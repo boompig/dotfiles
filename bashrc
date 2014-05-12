@@ -2,7 +2,7 @@
 alias ls='ls -G'
 
 # Yelp-specific aliases
-if [ -e "~/.yelp_bash_alias" ]; then
+if [ -e ~/.yelp_bash_alias ]; then
 	source ~/.yelp_bash_alias
 fi
 
