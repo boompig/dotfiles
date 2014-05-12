@@ -1,6 +1,10 @@
 syntax on
 set background=dark
-colorscheme elflord
+colorscheme default
 
 " show line #s
 set number
+
+" tabs are 4 spaces
+set tabstop=4
+set shiftwidth=4

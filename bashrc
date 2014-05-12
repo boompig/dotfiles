@@ -1,6 +1,11 @@
 # enable colorized ls
 alias ls='ls -G'
 
+# Yelp-specific aliases
+if [ -e "~/.yelp_bash_alias" ]; then
+	source ~/.yelp_bash_alias
+fi
+
 ##-ANSI-COLOR-CODES-##
 ColorOff='\[\033[0m\]'
 ###-Regular-###
@@ -22,10 +27,5 @@ BPurple='\[\033[1;35m\]'
 
 export PS1="${BPurple}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${LRed}\$${ColorOff} "
 
-# display TTY # in title
-#TTY_NUM=$(tty | tr -d '[a-z]/')
-#TITLE="TTY ${TTY_NUM}"
-#echo -n -e "\033]0;${TITLE}\007"
-
-# show fortune
+# show stupid cow banner
 fortune | cowsay
