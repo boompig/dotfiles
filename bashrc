@@ -12,7 +12,7 @@ else
 fi
 
 # get LS colors from config directory if possible
-if [ -e ${LS_COLORS_FILE} ]; then
+if [ -e ${LS_COLORS_FILE} ] && [ $(which dircolors) ]; then
 	eval "$(dircolors ${LS_COLORS_FILE})"
 fi
 
