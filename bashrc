@@ -1,5 +1,10 @@
 # enable colorized ls
-alias ls='ls -G'
+if [ -e /etc/lsb-release ]; then
+	alias ls='ls --color=auto'
+else
+	# on Mac
+	alias ls='ls -G'
+fi
 
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
