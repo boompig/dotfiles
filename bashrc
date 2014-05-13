@@ -1,9 +1,19 @@
+######## GLOBAL VARS #########
+# TODO this is not correct due to symlinking
+SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+LS_COLORS_FILE="${HOME}/dotfiles/config/dircolors.ansi-dark"
+
 # enable colorized ls
 if [ -e /etc/lsb-release ]; then
 	alias ls='ls --color=auto'
 else
 	# on Mac
 	alias ls='ls -G'
+fi
+
+# get LS colors from config directory if possible
+if [ -e ${LS_COLORS_FILE} ]; then
+	eval "$(dircolors ${LS_COLORS_FILE})"
 fi
 
 # Yelp-specific aliases
