@@ -21,14 +21,6 @@ if [ -e ~/.yelp_bash_alias ]; then
 	source ~/.yelp_bash_alias
 fi
 
-# Enable git-complete
-if [ -f ${GIT_COMPLETE} ]; then
-	source ${GIT_COMPLETE}
-fi
-
-if [ -f ${GIT_PROMPT} ]; then
-	source ${GIT_PROMPT}
-fi
 
 ##-ANSI-COLOR-CODES-##
 ColorOff='\[\033[0m\]'
@@ -49,7 +41,14 @@ LCyan='\[\033[1;36m\]'
 BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
 
-export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
+# Enable git prompt
+if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
+	source ${GIT_COMPLETE}
+	source ${GIT_PROMPT}
+	export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${BPurple}\$${ColorOff} "
+else
+	export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
+fi
 
 PATH="/usr/local/bin:${PATH}"
 
