@@ -40,7 +40,7 @@ LCyan='\[\033[1;36m\]'
 BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
 
-export PS1="${BPurple}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${LRed}\$${ColorOff} "
+export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
 
 # show stupid cow banner
 fortune | cowsay
