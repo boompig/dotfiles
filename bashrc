@@ -6,6 +6,7 @@ GIT_PROMPT="${HOME}/dotfiles/config/git-prompt.sh"
 # enable colorized ls
 if [ -e /etc/lsb-release ]; then
 	alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
 else
 	# on Mac
 	alias ls='ls -G'
