@@ -1,7 +1,6 @@
 ######## GLOBAL VARS #########
-# TODO this is not correct due to symlinking
-SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 LS_COLORS_FILE="${HOME}/dotfiles/config/dircolors.ansi-dark"
+GIT_COMPLETE="${HOME}/dotfiles/config/git-completion.bash"
 
 # enable colorized ls
 if [ -e /etc/lsb-release ]; then
@@ -19,6 +18,11 @@ fi
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
 	source ~/.yelp_bash_alias
+fi
+
+# Enable git-complete
+if [ -f ~/${GIT_COMPLETE} ]; then
+	source ${GIT_COMPLETE}
 fi
 
 ##-ANSI-COLOR-CODES-##
@@ -41,6 +45,8 @@ BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
 
 export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
+
+PATH="/usr/local/bin:${PATH}"
 
 # show stupid cow banner
 fortune | cowsay
