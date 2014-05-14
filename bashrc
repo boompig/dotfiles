@@ -1,6 +1,7 @@
 ######## GLOBAL VARS #########
 LS_COLORS_FILE="${HOME}/dotfiles/config/dircolors.ansi-dark"
 GIT_COMPLETE="${HOME}/dotfiles/config/git-completion.bash"
+GIT_PROMPT="${HOME}/dotfiles/config/git-prompt.sh"
 
 # enable colorized ls
 if [ -e /etc/lsb-release ]; then
@@ -21,8 +22,12 @@ if [ -e ~/.yelp_bash_alias ]; then
 fi
 
 # Enable git-complete
-if [ -f ~/${GIT_COMPLETE} ]; then
+if [ -f ${GIT_COMPLETE} ]; then
 	source ${GIT_COMPLETE}
+fi
+
+if [ -f ${GIT_PROMPT} ]; then
+	source ${GIT_PROMPT}
 fi
 
 ##-ANSI-COLOR-CODES-##
