@@ -13,6 +13,8 @@ else
 	alias ls='ls -G'
 fi
 
+alias ll='ls -l'
+
 # get LS colors from config directory if possible
 if [ -e ${LS_COLORS_FILE} ] && [ $(which dircolors) ]; then
 	eval "$(dircolors ${LS_COLORS_FILE})"
