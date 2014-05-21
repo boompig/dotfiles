@@ -1,7 +1,7 @@
 syntax on
 filetype plugin indent on
 set background=dark
-colorscheme default
+colorscheme railscasts
 
 " show line #s
 set number
