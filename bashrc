@@ -49,9 +49,9 @@ BPurple='\[\033[1;35m\]'
 if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
 	source ${GIT_COMPLETE}
 	source ${GIT_PROMPT}
-	export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${BPurple}\$${ColorOff} "
+	export PS1="${LBlue}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${Yellow}\$${ColorOff} "
 else
-	export PS1="${Blue}\h${ColorOff} ${Yellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
+	export PS1="${LBlue}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Yellow}\$${ColorOff} "
 fi
 
 PATH="/usr/local/bin:${PATH}"
