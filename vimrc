@@ -16,7 +16,7 @@ set hlsearch
 set cindent
 
 " turn on Pathogen to discovery plugins
-" execute pathogen#infect()
+execute pathogen#infect()
 
 " Vim magic on
 set omnifunc=syntaxcomplete#Complete
@@ -35,4 +35,3 @@ set splitright
 
 " make file names more intelligible in status line
 set statusline=%t
-
