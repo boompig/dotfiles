@@ -57,4 +57,4 @@ fi
 PATH="/usr/local/bin:${PATH}"
 
 # show stupid cow banner
-fortune | cowsay
+#fortune | cowsay
