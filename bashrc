@@ -4,6 +4,9 @@ GIT_COMPLETE="${HOME}/dotfiles/config/git-completion.bash"
 GIT_PROMPT="${HOME}/dotfiles/config/git-prompt.sh"
 
 # enable colorized ls
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
 if [ -e /etc/lsb-release ]; then
 	alias ls='ls --color=auto'
     alias grep='grep --color=auto'
@@ -11,16 +14,9 @@ if [ -e /etc/lsb-release ]; then
 else
 	# on Mac
 	alias ls='ls -G'
-    export CLICOLOR=1
-    export LSCOLORS=ExFxCxDxBxegedabagacad
 fi
 
 alias ll='ls -l'
-
-# get LS colors from config directory if possible
-if [ -e ${LS_COLORS_FILE} ] && [ $(which dircolors) ]; then
-	eval "$(dircolors ${LS_COLORS_FILE})"
-fi
 
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
@@ -57,9 +53,6 @@ else
 fi
 
 PATH="/usr/local/bin:${PATH}"
-
-# show stupid cow banner
-#fortune | cowsay
 
 # set the terminal to be 256-color compatible
 export TERM="xterm-256color"
