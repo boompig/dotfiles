@@ -11,6 +11,8 @@ if [ -e /etc/lsb-release ]; then
 else
 	# on Mac
 	alias ls='ls -G'
+    export CLICOLOR=1
+    export LSCOLORS=ExFxCxDxBxegedabagacad
 fi
 
 alias ll='ls -l'
@@ -49,12 +51,15 @@ BPurple='\[\033[1;35m\]'
 if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
 	source ${GIT_COMPLETE}
 	source ${GIT_PROMPT}
-	export PS1="${LBlue}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${Yellow}\$${ColorOff} "
+	export PS1="${LPurple}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${Yellow}\$${ColorOff} "
 else
-	export PS1="${LBlue}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Yellow}\$${ColorOff} "
+	export PS1="${LPurple}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Yellow}\$${ColorOff} "
 fi
 
 PATH="/usr/local/bin:${PATH}"
 
 # show stupid cow banner
 #fortune | cowsay
+
+# set the terminal to be 256-color compatible
+export TERM="xterm-256color"
