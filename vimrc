@@ -1,7 +1,24 @@
-syntax on
+" clear previous variable settings
+filetype off
+filetype plugin indent off
+
+" add support for go types
+set runtimepath+=$GOROOT/misc/vim
+
 filetype plugin indent on
-set background=dark
-colorscheme railscasts
+syntax on
+
+" syntax inspector
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" use my custom color scheme
+colorscheme dbk_sublime
 
 " show line #s
 set number
@@ -32,6 +49,3 @@ nnoremap <C-H> <C-W><C-H>
 
 " open tabpanes in right instead of left
 set splitright
-
-" make file names more intelligible in status line
-set statusline=%t
