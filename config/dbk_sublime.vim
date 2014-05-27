@@ -37,3 +37,12 @@ highlight link htmlEndTag htmlTag
 
 " Python-specific
 highlight link pythonBuiltin Type
+highlight link pythonInclude Statement
+highlight link pythonNumber Number
+
+" JS-specific
+highlight link javaScriptNumber Number
+highlight link javaScriptBraces htmlTag
+" this is not the function name but just the keyword 'function'
+highlight link javaScriptFunction Builtin
+highlight link javaScriptIdentifier Builtin

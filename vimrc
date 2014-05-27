@@ -27,6 +27,13 @@ set number
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set shiftround
+set softtabstop=4
+
+" show colour column after 100 chars
+set textwidth=99
+set colorcolumn=+1
+highlight ColorColumn ctermbg=8
 
 set hlsearch
 
