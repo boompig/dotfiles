@@ -1,3 +1,6 @@
+# Written by Daniel Kats
+# May 27, 2014
+
 ######## GLOBAL VARS #########
 LS_COLORS_FILE="${HOME}/dotfiles/config/dircolors.ansi-dark"
 GIT_COMPLETE="${HOME}/dotfiles/config/git-completion.bash"

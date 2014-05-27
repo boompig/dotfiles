@@ -1,3 +1,6 @@
+" Written by Daniel Kats
+" May 27, 2014
+
 " clear previous variable settings
 filetype off
 filetype plugin indent off

@@ -1,3 +1,6 @@
+" Created by Daniel Kats
+" May 27, 2014
+
 set background=dark
 highlight clear
 
