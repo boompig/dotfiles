@@ -56,3 +56,8 @@ PATH="/usr/local/bin:${PATH}"
 
 # set the terminal to be 256-color compatible
 export TERM="xterm-256color"
+
+### Added for the Heroku Toolbelt
+if [ -d /usr/local/heroku ]; then
+    export PATH="/usr/local/heroku/bin:$PATH"
+fi
