@@ -1,3 +1,6 @@
+" Created by Daniel Kats
+" May 27, 2014
+
 set background=dark
 highlight clear
 
@@ -38,6 +41,15 @@ highlight link htmlSpecialChar Constant
 
 " Python-specific
 highlight link pythonBuiltin Type
+highlight link pythonInclude Statement
+highlight link pythonNumber Number
 
 " YAML-specific
 highlight link yamlKey Statement
+
+" JS-specific
+highlight link javaScriptNumber Number
+highlight link javaScriptBraces htmlTag
+" this is not the function name but just the keyword 'function'
+highlight link javaScriptFunction Builtin
+highlight link javaScriptIdentifier Builtin
