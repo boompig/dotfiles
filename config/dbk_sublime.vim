@@ -34,6 +34,10 @@ highlight link vimGroup Type
 highlight htmlArg ctermfg=2
 highlight htmlTag ctermfg=7
 highlight link htmlEndTag htmlTag
+highlight link htmlSpecialChar Constant
 
 " Python-specific
 highlight link pythonBuiltin Type
+
+" YAML-specific
+highlight link yamlKey Statement
