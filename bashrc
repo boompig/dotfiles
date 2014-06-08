@@ -26,6 +26,10 @@ if [ -e ~/.yelp_bash_alias ]; then
 	source ~/.yelp_bash_alias
 fi
 
+# javascript stuff
+if [ -d ~/node_modules ] && [ -d ~/node_modules/jshint ]; then
+    PATH="$HOME/node_modules/jshint/bin:$PATH"
+fi
 
 ##-ANSI-COLOR-CODES-##
 ColorOff='\[\033[0m\]'
