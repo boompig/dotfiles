@@ -23,6 +23,9 @@ endfunc
 " use my custom color scheme
 colorscheme dbk_sublime
 
+" auto-close HTML tags
+set omnifunc=htmlcomplete#CompleteTags
+
 " show line #s
 set number
 
