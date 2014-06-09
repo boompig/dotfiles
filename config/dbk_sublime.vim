@@ -1,7 +1,6 @@
 " Created by Daniel Kats
 " May 27, 2014
 
-set background=dark
 highlight clear
 
 if exists("syntax on")
@@ -10,16 +9,20 @@ endif
 
 let g:colors_name = "dbk_sublime"
 
+set t_Co=256
+set background=dark
+highlight Normal ctermfg=lightgrey ctermbg=black guibg=black guifg=lightgrey
+
 " general
-highlight Comment ctermfg=8
-highlight String ctermfg=142
-highlight LineNr ctermfg=grey ctermbg=8
-highlight Number ctermfg=164
+highlight Comment ctermfg=8 guifg=grey
+highlight String ctermfg=142 guifg=yellow
+highlight LineNr ctermfg=grey ctermbg=8 guibg=darkgrey guifg=white
+highlight Number ctermfg=164 guifg=#F064F5
 highlight link Constant Number
-highlight Type ctermfg=111
-highlight Statement ctermfg=161
+highlight Type ctermfg=111 guifg=#90ABF5
+highlight Statement ctermfg=161 guifg=#F564A8
 highlight link Conditional Statement
-highlight Function ctermfg=40
+highlight Function ctermfg=40 guifg=green
 highlight link Builtin Type
 
 " Go-specific

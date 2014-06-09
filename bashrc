@@ -21,6 +21,10 @@ fi
 
 alias ll='ls -l'
 
+if [ -e /Applications/Postgres.App ]; then
+    alias psql='/Applications/Postgres.app/Contents//Versions/9.3/bin/psql'
+fi
+
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
 	source ~/.yelp_bash_alias
@@ -68,3 +72,6 @@ export TERM="xterm-256color"
 if [ -d /usr/local/heroku ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
