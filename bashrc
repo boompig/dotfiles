@@ -19,6 +19,10 @@ else
 	alias ls='ls -G'
 fi
 
+# on linux, set alias for open command
+uname -a | grep -io linux>/dev/null && alias open='xdg-open'
+
+
 alias ll='ls -l'
 
 if [ -e /Applications/Postgres.App ]; then
@@ -53,14 +57,15 @@ LCyan='\[\033[1;36m\]'
 ####-Bold-####
 BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
+BGreen='\[\033[1;32m\]'
 
 # Enable git prompt
 if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
 	source ${GIT_COMPLETE}
 	source ${GIT_PROMPT}
-	export PS1="${LPurple}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${Yellow}\$${ColorOff} "
+	export PS1="${BPurple}\h${ColorOff} ${BGreen}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${Yellow}\$${ColorOff} "
 else
-	export PS1="${LPurple}\h${ColorOff} ${Green}[ \w ]${ColorOff} ${Yellow}\$${ColorOff} "
+	export PS1="${BPurple}\h${ColorOff} ${BGreen}[ \w ]${ColorOff} ${Yellow}\$${ColorOff} "
 fi
 
 PATH="/usr/local/bin:${PATH}"
