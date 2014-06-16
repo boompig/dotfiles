@@ -14,7 +14,7 @@ if [ $? -eq 0 ]; then
     # write colorscheme
     mkdir -p ~/.vim/colors ln -s "${HERE}/config/dbk_sublime.vim" ~/.vim/colors/dbk_sublime.vim
 
-    if [ ! -e ~/.vim/bundle ];
+    if [ ! -e ~/.vim/bundle ]; then
         # install pathogen
         mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
     fi
