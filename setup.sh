@@ -8,8 +8,12 @@ echo "source \"${HERE}/bashrc\"" >> ~/.bashrc
 
 which vim>/dev/null
 if [ $? -eq 0 ]; then
-    # write vimrc
-    ln -s "$HERE/vimrc" ~/.vimrc
+    if [ -e ~/.vimrc ]; then
+        echo "Error: vimrc already exists">&1
+    else
+        # write vimrc
+        ln -s "$HERE/vimrc" ~/.vimrc
+    fi
 
     # write colorscheme
     mkdir -p ~/.vim/colors ln -s "${HERE}/config/dbk_sublime.vim" ~/.vim/colors/dbk_sublime.vim
