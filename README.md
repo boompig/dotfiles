@@ -23,7 +23,9 @@ For the vim colorscheme to work, do the following:
 
 If you start vim and you get this error:
 > E117: Unknown function: pathogen#infect
+
 > E15: Invalid expression: pathogen#infect()
+
 > Press ENTER or type command to continue
 
 Then you don't have pathogen installed. Why not? Get it [here](https://github.com/tpope/vim-pathogen)
