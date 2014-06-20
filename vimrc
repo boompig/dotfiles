@@ -1,6 +1,11 @@
 " Written by Daniel Kats
 " May 27, 2014
 
+set nocompatible
+
+" backslash is harder to reach
+let mapleader=","
+
 " clear previous variable settings
 filetype off
 filetype plugin indent off
