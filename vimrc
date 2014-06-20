@@ -35,12 +35,6 @@ set omnifunc=htmlcomplete#CompleteTags
 " super pro remapping of vim colon to semi-colon
 nnoremap ; :
 
-" STOP USING ARROW KEYS (pro only)
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
 " reload vimrc quickly
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " simple switch for set paste
@@ -57,7 +51,6 @@ set shiftround
 set softtabstop=4
 " show matching parens
 set showmatch
-set ignorecase " ignore case when searching
 
 set title " change terminal's title
 
