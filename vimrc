@@ -10,6 +10,7 @@ let mapleader=","
 filetype off
 filetype plugin indent off
 
+
 " add support for go types
 set runtimepath+=$GOROOT/misc/vim
 
@@ -31,6 +32,20 @@ colorscheme dbk_sublime
 " auto-close HTML tags
 set omnifunc=htmlcomplete#CompleteTags
 
+" super pro remapping of vim colon to semi-colon
+nnoremap ; :
+
+" STOP USING ARROW KEYS (pro only)
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" reload vimrc quickly
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" simple switch for set paste
+set pastetoggle=<F2>
+
 " show line #s
 set number
 
@@ -40,6 +55,18 @@ set shiftwidth=4
 set expandtab
 set shiftround
 set softtabstop=4
+" show matching parens
+set showmatch
+set ignorecase " ignore case when searching
+
+set title " change terminal's title
+
+" show whitespace
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" enable mouse!!!
+" set mouse=a
 
 " show colour column after 100 chars
 set textwidth=99
