@@ -52,8 +52,6 @@ set softtabstop=4
 " show matching parens
 set showmatch
 
-set title " change terminal's title
-
 " show whitespace
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
