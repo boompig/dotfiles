@@ -15,7 +15,7 @@ highlight Normal ctermfg=lightgrey ctermbg=black guibg=black guifg=lightgrey
 
 " general
 highlight Comment ctermfg=8 guifg=grey
-highlight String ctermfg=142 guifg=yellow
+highlight String ctermfg=185 guifg=yellow
 highlight LineNr ctermfg=grey ctermbg=8 guibg=darkgrey guifg=white
 highlight Number ctermfg=164 guifg=#F064F5
 highlight link Constant Number
@@ -41,6 +41,9 @@ highlight htmlArg ctermfg=2
 highlight htmlTag ctermfg=7
 highlight link htmlEndTag htmlTag
 highlight link htmlSpecialChar Constant
+highlight link htmlH1 Text
+highlight link htmlTitle Text
+highlight phpRegion ctermfg=12
 
 " Python-specific
 highlight link pythonBuiltin Type
