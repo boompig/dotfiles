@@ -24,6 +24,7 @@ highlight Statement ctermfg=161 guifg=#F564A8
 highlight link Conditional Statement
 highlight Function ctermfg=40 guifg=green
 highlight link Builtin Type
+highlight Highlight ctermfg=black ctermbg=yellow
 
 " Go-specific
 highlight link goDirective Statement
