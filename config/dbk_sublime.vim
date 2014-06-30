@@ -13,6 +13,9 @@ set t_Co=256
 set background=dark
 highlight Normal ctermfg=lightgrey ctermbg=black guibg=black guifg=lightgrey
 
+" navigation
+highlight netrwDir ctermfg=grey
+
 " general
 highlight Comment ctermfg=8 guifg=grey
 highlight String ctermfg=185 guifg=yellow
