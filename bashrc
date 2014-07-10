@@ -26,7 +26,8 @@ uname -a | grep -io linux>/dev/null && alias open='xdg-open'
 alias ll='ls -l'
 
 if [ -e /Applications/Postgres.App ]; then
-    alias psql='/Applications/Postgres.app/Contents//Versions/9.3/bin/psql'
+    #alias psql='/Applications/Postgres.app/Contents//Versions/9.3/bin/psql'
+    PATH="/Applications/Postgres.app/Contents//Versions/9.3/bin:$PATH"
 fi
 
 # Yelp-specific aliases
