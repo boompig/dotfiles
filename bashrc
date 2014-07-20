@@ -59,14 +59,15 @@ LCyan='\[\033[1;36m\]'
 BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
 BGreen='\[\033[1;32m\]'
+BYellow='\[\033[1;33m\]'
 
 # Enable git prompt
 if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
 	source ${GIT_COMPLETE}
 	source ${GIT_PROMPT}
-	export PS1="${BPurple}\h${ColorOff} ${BGreen}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${Yellow}\$${ColorOff} "
+	export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${BPurple}\$${ColorOff} "
 else
-	export PS1="${BPurple}\h${ColorOff} ${BGreen}[ \w ]${ColorOff} ${Yellow}\$${ColorOff} "
+	export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
 fi
 
 PATH="/usr/local/bin:${PATH}"
