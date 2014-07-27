@@ -40,6 +40,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " simple switch for set paste
 set pastetoggle=<F2>
 
+cnoreabbrev <expr> nt ((getcmdtype() is# ':' && getcmdline() is# 'nt')?('NERDTree'):('nt'))
+
 " show line #s
 set number
 

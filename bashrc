@@ -22,6 +22,9 @@ fi
 # on linux, set alias for open command
 uname -a | grep -io linux>/dev/null && alias open='xdg-open'
 
+# use vim bindings for bash
+set -o vi
+
 
 alias ll='ls -l'
 
