@@ -87,3 +87,4 @@ nnoremap <C-H> <C-W><C-H>
 
 " open tabpanes in right instead of left
 set splitright
+set noswapfile

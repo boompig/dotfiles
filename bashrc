@@ -89,3 +89,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # set vim as default editor
 git config --global core.ui true
 git config --global core.editor vim
+
+if [ -f ~/.git-completion.sh ]; then
+    source ~/.git-completion.sh
+fi
