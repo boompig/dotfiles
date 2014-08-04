@@ -37,3 +37,5 @@ PROMPT="%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magent
 
 # do right-prompt
 RPROMPT=""
+
+source ~/.yelp_bash_alias
