@@ -58,14 +58,6 @@ set showmatch
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-" enable mouse!!!
-" set mouse=a
-
-" show colour column after 100 chars
-set textwidth=99
-set colorcolumn=+1
-highlight ColorColumn ctermbg=8
-
 set hlsearch
 
 set cindent
