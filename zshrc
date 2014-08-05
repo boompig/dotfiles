@@ -58,3 +58,8 @@ if [ -f "$ZSH_COLOR_PLUGIN" ]; then
     source "$ZSH_COLOR_PLUGIN"
 fi
 #############################################################################
+
+### Added by the Heroku Toolbelt
+if [ -d "/usr/local/heroku/bin" ]; then
+    export PATH="/usr/local/heroku/bin:$PATH"
+fi
