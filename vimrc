@@ -1,15 +1,24 @@
+""""""""""""""""""""""""""""""""""""""
 " Written by Daniel Kats
 " May 27, 2014
+""""""""""""""""""""""""""""""""""""""
 
+"""""""""""" Clear Previous Junk """"""""""""
 set nocompatible
-
-" backslash is harder to reach
-let mapleader=","
-
 " clear previous variable settings
 filetype off
 filetype plugin indent off
+"""""""""""""""""""""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""" Vundle """"""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'tpope/vim-sensible'
+
+call vundle#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " add support for go types
 set runtimepath+=$GOROOT/misc/vim
@@ -61,9 +70,8 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set hlsearch
 
 set cindent
-
-" turn on Pathogen to discovery plugins
-execute pathogen#infect()
+" backslash is harder to reach
+let mapleader=","
 
 " Vim magic on
 set omnifunc=syntaxcomplete#Complete
