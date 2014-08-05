@@ -38,6 +38,9 @@ PROMPT="%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magent
 # do right-prompt
 RPROMPT=""
 
+# aliases
+alias ls='ls --color=auto'
+
 if [ -f ~/.yelp_bash_alias ]; then
 	source ~/.yelp_bash_alias
 fi
