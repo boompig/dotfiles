@@ -38,14 +38,23 @@ PROMPT="%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magent
 # do right-prompt
 RPROMPT=""
 
-# aliases
+################################## aliases ##################################
 alias ls='ls --color=auto'
+alias ll='ls -l'
 alias grep='grep --color=auto'
 
-if [ -f ~/.yelp_bash_alias ]; then
-    source ~/.yelp_bash_alias
+YELP_ALIAS_PATH="$HOME/.yelp_bash_alias"
+if [ -f "$YELP_ALIAS_PATH" ]; then
+    source "$YELP_BASH_ALIAS"
 fi
 
-if [ -x /opt/sublime_text/sublime_text ]; then
-    alias sublime='/opt/sublime_text/sublime_text'
+SUBLIME_PATH="/opt/sublime_text/sublime_text"
+if [ -x "$SUBLIME_PATH" ]; then
+    alias sublime="$SUBLIME_PATH"
 fi
+
+ZSH_COLOR_PLUGIN="$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+if [ -f "$ZSH_COLOR_PLUGIN" ]; then
+    source "$ZSH_COLOR_PLUGIN"
+fi
+#############################################################################
