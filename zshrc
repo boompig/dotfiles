@@ -40,7 +40,12 @@ RPROMPT=""
 
 # aliases
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
 if [ -f ~/.yelp_bash_alias ]; then
-	source ~/.yelp_bash_alias
+    source ~/.yelp_bash_alias
+fi
+
+if [ -x /opt/sublime_text/sublime_text ]; then
+    alias sublime='/opt/sublime_text/sublime_text'
 fi
