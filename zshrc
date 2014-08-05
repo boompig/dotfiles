@@ -45,7 +45,7 @@ alias grep='grep --color=auto'
 
 YELP_ALIAS_PATH="$HOME/.yelp_bash_alias"
 if [ -f "$YELP_ALIAS_PATH" ]; then
-    source "$YELP_BASH_ALIAS"
+    source "$YELP_ALIAS_PATH"
 fi
 
 SUBLIME_PATH="/opt/sublime_text/sublime_text"
