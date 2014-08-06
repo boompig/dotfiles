@@ -4,22 +4,31 @@
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # write bashrc
-echo "source \"${HERE}/bashrc\"" >> ~/.bashrc
+BASH_RC="$HOME/.bashrc"
+if [ -f "$BASH_RC" ]
+then
+	echo "Error: $BASH_RC already exists">&2
+else
+	ln -s "$HERE/bashrc" "$BASH_RC"
+fi
 
+# write zshrc
+ZSH="$HOME/.zshrc"
+if [ -f "$ZSH" ]
+then
+	echo "Error: $ZSH already exists">&2
+else
+	ln -s "$HERE/zshrc" "$ZSH"
+fi
+
+# write vimrc
 which vim>/dev/null
 if [ $? -eq 0 ]; then
-    if [ -e ~/.vimrc ]; then
-        echo "Error: vimrc already exists">&1
+	VIM_RC="$HOME/.vimrc"
+    if [ -f "$VIM_RC" ]; then
+        echo "Error: $VIM_RC already exists">&2
     else
         # write vimrc
-        ln -s "$HERE/vimrc" ~/.vimrc
-    fi
-
-    # write colorscheme
-    mkdir -p ~/.vim/colors ln -s "${HERE}/config/dbk_sublime.vim" ~/.vim/colors/dbk_sublime.vim
-
-    if [ ! -e ~/.vim/bundle ]; then
-        # install pathogen
-        mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+        ln -s "$HERE/vimrc" "$VIM_RC"
     fi
 fi
