@@ -19,6 +19,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'fatih/vim-go'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'ekalinin/Dockerfile.vim'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
