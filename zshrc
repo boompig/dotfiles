@@ -42,6 +42,8 @@ RPROMPT=""
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias grep='grep --color=auto'
+alias py='python'
+alias ipy='ipython'
 
 YELP_ALIAS_PATH="$HOME/.yelp_bash_alias"
 if [ -f "$YELP_ALIAS_PATH" ]; then
