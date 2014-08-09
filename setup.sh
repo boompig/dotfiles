@@ -31,4 +31,11 @@ if [ $? -eq 0 ]; then
         # write vimrc
         ln -s "$HERE/vimrc" "$VIM_RC"
     fi
+
+    if [ -d ~/.vim/bundle/Vundle.vim ]
+    then
+        echo "Vundle is already installed">&2
+    else
+        git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    fi
 fi
