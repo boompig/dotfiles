@@ -16,6 +16,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'tpope/vim-sensible'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,5 +91,9 @@ nnoremap <C-H> <C-W><C-H>
 " open tabpanes in right instead of left
 set splitright
 set noswapfile
+
+" vim-go folds everything by default, which is annoying.
+let g:go_disable_autoinstall = 1
+
 " for some reason, needs to be set twice
 color dbk_sublime
