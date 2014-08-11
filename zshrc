@@ -39,11 +39,28 @@ PROMPT="%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magent
 RPROMPT=""
 
 ################################## aliases ##################################
-alias ls='ls --color=auto'
+uname -a | grep -o Linux>/dev/null
+if [ $? -eq 0 ]
+then
+    alias ls='ls --color=auto'
+else
+    alias ls='ls -G'
+fi
 alias ll='ls -l'
 alias grep='grep --color=auto'
 alias py='python'
 alias ipy='ipython'
+
+vims () {
+    local session_dir="${HOME}/.vim/sessions/$1.vim"
+    if [ -f "${session_dir}" ]
+    then
+        vim -S "${session_dir}"
+    else
+        echo "No such session: ${session_dir}">&2
+    fi
+}
+export vims
 
 YELP_ALIAS_PATH="$HOME/.yelp_bash_alias"
 if [ -f "$YELP_ALIAS_PATH" ]; then
