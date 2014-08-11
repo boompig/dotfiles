@@ -23,6 +23,7 @@ Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-obsession'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
