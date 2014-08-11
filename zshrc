@@ -38,7 +38,7 @@ PROMPT="%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magent
 # do right-prompt
 RPROMPT=""
 
-################################## aliases ##################################
+################################## aliases and PATH ##################################
 uname -a | grep -o Linux>/dev/null
 if [ $? -eq 0 ]
 then
@@ -76,9 +76,11 @@ ZSH_COLOR_PLUGIN="$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.z
 if [ -f "$ZSH_COLOR_PLUGIN" ]; then
     source "$ZSH_COLOR_PLUGIN"
 fi
-#############################################################################
 
 ### Added by the Heroku Toolbelt
 if [ -d "/usr/local/heroku/bin" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
+#############################################################################
+
+set -o emacs
