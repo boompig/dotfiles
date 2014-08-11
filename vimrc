@@ -46,9 +46,6 @@ endfunc
 " use my custom color scheme
 colorscheme dbk_sublime
 
-" auto-close HTML tags
-set omnifunc=htmlcomplete#CompleteTags
-
 " super pro remapping of vim colon to semi-colon
 nnoremap ; :
 
@@ -57,6 +54,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " simple switch for set paste
 set pastetoggle=<F2>
 
+" map :nt to :NerdTree
 cnoreabbrev <expr> nt ((getcmdtype() is# ':' && getcmdline() is# 'nt')?('NERDTree'):('nt'))
 
 " show line #s

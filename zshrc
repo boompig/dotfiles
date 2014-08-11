@@ -83,4 +83,5 @@ if [ -d "/usr/local/heroku/bin" ]; then
 fi
 #############################################################################
 
+# set emacs mode
 set -o emacs
