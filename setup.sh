@@ -38,4 +38,6 @@ if [ $? -eq 0 ]; then
     else
         git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
+
+    vim +PluginInstall +qa
 fi
