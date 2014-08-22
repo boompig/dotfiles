@@ -32,6 +32,13 @@ if [ $? -eq 0 ]; then
         ln -s "$HERE/vimrc" "$VIM_RC"
     fi
 
+    # copy over colorscheme
+    if [ ! -d "$HOME/.vim/colors" ]
+    then
+        mkdir "$HOME/.vim/colors"
+    fi
+    cp "$HERE/config/dbk_sublime.vim" "$HOME/.vim/colors"
+
     if [ -d ~/.vim/bundle/Vundle.vim ]
     then
         echo "Vundle is already installed">&2
