@@ -35,7 +35,7 @@ if [ $? -eq 0 ]; then
     # copy over colorscheme
     if [ ! -d "$HOME/.vim/colors" ]
     then
-        mkdir "$HOME/.vim/colors"
+        mkdir -p "$HOME/.vim/colors"
     fi
     cp "$HERE/config/dbk_sublime.vim" "$HOME/.vim/colors"
 
