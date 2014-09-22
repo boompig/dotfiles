@@ -81,6 +81,11 @@ fi
 if [ -d "/usr/local/heroku/bin" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
+
+if [ -e "$HOME/.printer-prefs" ]; then
+    source "$HOME/.printer-prefs"
+fi
+
 #############################################################################
 
 # set emacs mode

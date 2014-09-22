@@ -33,6 +33,8 @@ set runtimepath+=$GOROOT/misc/vim
 
 filetype plugin indent on
 syntax on
+set background=dark
+set t_Co=256
 
 " syntax inspector
 nmap <C-S-P> :call <SID>SynStack()<CR>
