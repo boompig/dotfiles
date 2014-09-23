@@ -48,7 +48,13 @@ else
 fi
 alias ll='ls -l'
 alias grep='grep --color=auto'
-alias py='python'
+
+which python3>/dev/null
+if [ $? -eq 0 ]; then
+    alias py='python3'
+else
+    alias py='python'
+fi
 alias ipy='ipython'
 
 vims () {
