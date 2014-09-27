@@ -37,6 +37,22 @@ PROMPT="%{$fg_bold[blue]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_pr
 
 # do right-prompt
 RPROMPT=""
+zle-keymap-select () {
+    case $KEYMAP in
+        vicmd)
+            RPROMPT="%{$fg_bold[red]%}"'[c]'"%{$reset_color%}"
+            ;; # block cursor
+        viins|main)
+            #RPROMPT="%{$fg_bold[green]%}"'[i]'"%{$reset_color%}"
+            RPROMPT=''
+            ;;
+        *)
+            RPROMPT=''
+            ;;
+    esac
+    zle reset-prompt
+}
+zle -N zle-keymap-select
 
 ################################## aliases and PATH ##################################
 uname -a | grep -o Linux>/dev/null
@@ -73,6 +89,11 @@ if [ -f "$YELP_ALIAS_PATH" ]; then
     source "$YELP_ALIAS_PATH"
 fi
 
+UT_ALIAS_PATH="$HOME/.ut_bash_alias"
+if [ -f "$UT_ALIAS_PATH" ]; then
+    source "$UT_ALIAS_PATH"
+fi
+
 SUBLIME_PATH="/opt/sublime_text/sublime_text"
 if [ -x "$SUBLIME_PATH" ]; then
     alias sublime="$SUBLIME_PATH"
@@ -95,4 +116,5 @@ fi
 #############################################################################
 
 # set emacs mode
+#set -o vi
 set -o emacs

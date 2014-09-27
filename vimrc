@@ -100,5 +100,35 @@ set noswapfile
 " vim-go folds everything by default, which is annoying.
 let g:go_disable_autoinstall = 1
 
+"set noerrorbells
+"set visualbell
+
 " for some reason, needs to be set twice
 color dbk_sublime
+
+"""""""""""""""""" User-defined functions, for my sanity
+function! Tex ()
+    let fname=bufname("%")
+    " do not include .tex
+    let pdf_name=strpart(fname, 0, strlen(fname) - 4) . ".pdf"
+    execute "! pdflatex % && open " . pdf_name
+endfunction
+noremap <leader>tex :.call Tex()<cr>
+
+function! Cpp ()
+    let fname=bufname("%")
+    " do not include .cpp
+    let bin_name=strpart(fname, 0, strlen(fname) - 4)
+    execute "! g++ " . fname . " -o " . bin_name
+endfunction
+noremap <leader>cpp :.call Cpp()<cr>
+
+function! Py ()
+    let fname=bufname("%")
+    execute "! python %"
+endfunction
+noremap <leader>py :.call Py()<cr>
+
+" rerun last command
+noremap <leader>rep q:k<cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
