@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
 " Written by Daniel Kats
 " May 27, 2014
 """"""""""""""""""""""""""""""""""""""
@@ -24,6 +24,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-obsession'
 Plugin 'kien/ctrlp.vim'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
