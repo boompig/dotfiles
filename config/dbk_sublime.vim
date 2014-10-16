@@ -11,13 +11,13 @@ let g:colors_name = "dbk_sublime"
 
 set t_Co=256
 set background=dark
-highlight Normal guibg=#183058 guifg=lightgrey
+highlight Normal guibg=#2E3033 guifg=lightgrey
 
 " navigation
 highlight netrwDir ctermfg=grey
 
 " general
-highlight Comment guifg=#465457 ctermfg=grey
+highlight Comment guifg=#878787 ctermfg=grey
 highlight SpecialComment guifg=#465457
 highlight String ctermfg=185 guifg=yellow
 highlight LineNr ctermfg=grey ctermbg=8 guibg=darkgrey guifg=white
