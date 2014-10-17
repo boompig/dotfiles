@@ -87,12 +87,6 @@ set omnifunc=syntaxcomplete#Complete
 " auto-close HTML tags
 iabbrev </ </<C-X><C-O>
 
-" shortcut for faster moving between windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " open tabpanes in right instead of left
 set splitright
 set noswapfile
@@ -105,6 +99,19 @@ let g:go_disable_autoinstall = 1
 
 " for some reason, needs to be set twice
 color dbk_sublime
+
+"""""""""""""""""" Keyboard shortcuts
+" shortcut for faster moving between windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" faster opening NerdTree
+cnoremap NT NERDTree
+
+" auto-completion
+inoremap <C-Space> <C-X><C-O>
 
 """""""""""""""""" User-defined functions, for my sanity
 function! Tex ()
