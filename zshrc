@@ -113,6 +113,14 @@ if [ -e "$HOME/.printer-prefs" ]; then
     source "$HOME/.printer-prefs"
 fi
 
+# on Macs, make sure gcc is homebrew version
+uname -a | grep -o Linux>/dev/null
+if [ $? -ne 0 ]; then
+    if [ -e "/usr/local/bin/gcc-4.9" ]; then
+        alias gcc='/usr/local/bin/gcc-4.9'
+    fi
+fi
+
 #############################################################################
 
 # set emacs mode
