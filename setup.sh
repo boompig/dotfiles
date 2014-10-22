@@ -35,6 +35,11 @@ else
     ln -s "$HERE/zshrc" "$ZSH"
 fi
 
+# copy zsh color plugin
+pushd "$HOME"
+git clone git@github.com:zsh-users/zsh-syntax-highlighting.git
+popd
+
 # write vimrc
 which vim>/dev/null
 if [ $? -eq 0 ]; then
@@ -54,7 +59,7 @@ if [ $? -eq 0 ]; then
     fi
 
     MY_VIM_COLOR="$HERE/config/dbk_sublime.vim"
-    if [ ! -e "$MY_VIM_COLOR" ]; then
+    if [ ! -e "$HOME/.vim/colors/dbk_sublime.vim" ]; then
         cp "$MY_VIM_COLOR" "$VIM_COLOR_DIR"
     fi
 
