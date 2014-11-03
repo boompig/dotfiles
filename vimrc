@@ -15,18 +15,28 @@ filetype plugin indent off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" language-specific stuff
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'elzr/vim-json'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'fatih/vim-go'
+
+" actual plugins
 Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
-Plugin 'fatih/vim-go'
 Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-obsession'
 Plugin 'kien/ctrlp.vim'
-Plugin 'elzr/vim-json'
+Plugin 'Shougo/neocomplcache.vim'
+"Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
+let g:neocomplcache_enable_at_startup = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " add support for go types
@@ -47,7 +57,7 @@ function! <SID>SynStack()
 endfunc
 
 " use my custom color scheme
-colorscheme dbk_sublime
+colorscheme molokai
 
 " super pro remapping of vim colon to semi-colon
 nnoremap ; :
@@ -105,7 +115,7 @@ let g:go_disable_autoinstall = 1
 "set visualbell
 
 " for some reason, needs to be set twice
-color dbk_sublime
+color molokai
 
 """""""""""""""""" User-defined functions, for my sanity
 function! Tex ()
@@ -132,4 +142,10 @@ noremap <leader>py :.call Py()<cr>
 
 " rerun last command
 noremap <leader>rep q:k<cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""" Show current syntax group """"""""""""""""""""""""
+map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""

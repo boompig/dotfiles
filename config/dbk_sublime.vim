@@ -13,6 +13,9 @@ set t_Co=256
 set background=dark
 highlight Normal guibg=#2E3033 guifg=lightgrey
 
+" disable cursor blinking except in insert mode
+set guicursor+=n-v-c:blinkon0
+
 " navigation
 highlight netrwDir ctermfg=grey
 
