@@ -10,6 +10,10 @@ promptinit
 # no history duplicates
 setopt HIST_IGNORE_DUPS
 
+HISTFILE="$HOME/.zhistory"
+HISTSIZE=1000
+SAVEHIST=1000
+
 # git in prompt
 zstyle ':vcs_info:*' actionformats \
         '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
