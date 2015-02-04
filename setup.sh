@@ -37,7 +37,7 @@ fi
 
 # copy zsh color plugin
 pushd "$HOME"
-git clone https@github.com:zsh-users/zsh-syntax-highlighting.git
+https://github.com/zsh-users/zsh-syntax-highlighting.git
 popd
 
 # write vimrc
