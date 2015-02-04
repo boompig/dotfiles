@@ -56,9 +56,6 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" use my custom color scheme
-colorscheme molokai
-
 " super pro remapping of vim colon to semi-colon
 nnoremap ; :
 
