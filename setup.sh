@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Written by Daniel Kats
 # This script will automatically setup the dotfiles to 'just work'
 
@@ -35,10 +37,27 @@ else
     ln -s "$HERE/zshrc" "$ZSH"
 fi
 
-# copy zsh color plugin
-pushd "$HOME"
-https://github.com/zsh-users/zsh-syntax-highlighting.git
-popd
+if [ ! -d "$HOME/zsh-syntax-highlighting" ]
+    # copy zsh color plugin
+    pushd "$HOME"
+    https://github.com/zsh-users/zsh-syntax-highlighting.git
+    popd
+else
+    echo "zsh-syntax-highlighting already installed"
+fi
+
+# clone Molokai scheme
+if [ ! -d "$HOME/.vim/molokai" ]; then
+    echo "Installing Molokai colorscheme"
+    pushd "$HOME/.vim"
+    git clone https://github.com/tomasr/molokai.git
+
+    # and install it
+    cp molokai/colors/molokai.vim colors/
+    popd
+else
+    echo "Molokai already installed"
+fi
 
 # write vimrc
 which vim>/dev/null
