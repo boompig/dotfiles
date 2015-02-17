@@ -108,11 +108,18 @@ let g:go_disable_autoinstall = 1
 " vim-go also runs go-fmt on every save, disable that
 let g:go_fmt_autosave = 0
 
+" if file changed outside vim, automatically load newest version
+set autoread
+set foldmethod=manual
+
 "set noerrorbells
 "set visualbell
 
 " for some reason, needs to be set twice
 color molokai
+
+" status line inspired by gary bernhardt
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 """""""""""""""""" Keyboard shortcuts
 " shortcut for faster moving between windows

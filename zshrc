@@ -113,6 +113,11 @@ if [ -d "/usr/local/heroku/bin" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
+# on Mac, make sure using homebrew version of executables
+if [ -d "/usr/local/bin" ]; then
+    export PATH="/usr/local/bin:$PATH"
+fi
+
 if [ -e "$HOME/.printer-prefs" ]; then
     source "$HOME/.printer-prefs"
 fi
