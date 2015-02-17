@@ -39,8 +39,12 @@ call vundle#end()
 let g:neocomplcache_enable_at_startup = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""" Language-Specific """""""""""""""""""""""""""
 " add support for go types
 set runtimepath+=$GOROOT/misc/vim
+" all *.md files refer to markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype plugin indent on
 syntax on
@@ -104,6 +108,8 @@ set noswapfile
 
 " vim-go folds everything by default, which is annoying.
 let g:go_disable_autoinstall = 1
+" vim-go also runs go-fmt on every save, disable that
+let g:go_fmt_autosave = 0
 
 "set noerrorbells
 "set visualbell
@@ -140,6 +146,22 @@ function! Cpp ()
     execute "! g++ " . fname . " -o " . bin_name
 endfunction
 noremap <leader>cpp :.call Cpp()<cr>
+
+function! BuildC ()
+    let fname=bufname("%")
+    " do not include .c
+    let bin_name=strpart(fname, 0, strlen(fname) - 2)
+    execute "! gcc " . fname . " -o " . bin_name
+endfunction
+map <C-B> :.call BuildC()<cr>
+
+function! RunC ()
+    let fname=bufname("%")
+    " do not include .c
+    let bin_name=strpart(fname, 0, strlen(fname) - 2)
+    execute "! gcc " . fname . " -o " . bin_name . " && ./" . bin_name
+endfunction
+map <C-R> :.call RunC()<cr>
 
 function! Py ()
     let fname=bufname("%")
