@@ -41,7 +41,7 @@ if [ ! -d "$HOME/zsh-syntax-highlighting" ]
 then
     # copy zsh color plugin
     pushd "$HOME"
-    https://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
     popd
 else
     echo "zsh-syntax-highlighting already installed"
