@@ -39,7 +39,7 @@ fi
 
 if [ $USER = "root" ]
 then
-    PROMPT="%{fg_red[red]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}$ %{$reset_color%}"
+    PROMPT="%{$fg_red[red]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}$ %{$reset_color%}"
 else
     PROMPT="%{$fg_bold[blue]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}$ %{$reset_color%}"
 fi
