@@ -74,12 +74,6 @@ fi
 alias ll='ls -l'
 alias grep='grep --color=auto'
 
-which python3>/dev/null
-if [ $? -eq 0 ]; then
-    alias py='python3'
-else
-    alias py='python'
-fi
 alias ipy='ipython'
 
 vims () {
@@ -102,6 +96,7 @@ UT_ALIAS_PATH="$HOME/.ut_bash_alias"
 if [ -f "$UT_ALIAS_PATH" ]; then
     source "$UT_ALIAS_PATH"
 fi
+alias ssh-pi='ssh pi@raspberrypi'
 
 SUBLIME_PATH="/opt/sublime_text/sublime_text"
 if [ -x "$SUBLIME_PATH" ]; then

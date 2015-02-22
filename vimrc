@@ -151,19 +151,45 @@ function! Cpp ()
 endfunction
 noremap <leader>cpp :.call Cpp()<cr>
 
-function! BuildC ()
-    let fname=bufname("%")
-    " do not include .c
-    let bin_name=strpart(fname, 0, strlen(fname) - 2)
-    execute "! gcc " . fname . " -o " . bin_name
+function! Build ()
+    let ext=expand("%:e")
+    if ext=="js" || ext=="css"
+        execute "! grunt build"
+    elseif ext=="c"
+        let fname=bufname("%")
+        " do not include .c
+        let bin_name=strpart(fname, 0, strlen(fname) - 2)
+        execute "! gcc " . fname . " -o " . bin_name
+    elseif ext=="cpp"
+        let fname=bufname("%")
+        " do not include .cpp
+        let bin_name=strpart(fname, 0, strlen(fname) - 4)
+        execute "! g++ " . fname . " -o " . bin_name
+    elseif ext==""
+        echom "no build action associated with empty extension"
+    else
+        echom "no build action associated with extension " . ext
+    endif
 endfunction
-map <C-B> :.call BuildC()<cr>
+map <C-B> :.call Build()<cr>
 
 function! RunC ()
-    let fname=bufname("%")
-    " do not include .c
-    let bin_name=strpart(fname, 0, strlen(fname) - 2)
-    execute "! gcc " . fname . " -o " . bin_name . " && ./" . bin_name
+    let ext=expand("%:e")
+    if ext=="c"
+        let fname=bufname("%")
+        " do not include .c
+        let bin_name=strpart(fname, 0, strlen(fname) - 2)
+        execute "! gcc " . fname . " -o " . bin_name . " && ./" . bin_name
+    elseif ext=="cpp"
+        let fname=bufname("%")
+        " do not include .cpp
+        let bin_name=strpart(fname, 0, strlen(fname) - 4)
+        execute "! g++ " . fname . " -o " . bin_name . "&& ./" . bin_name
+    elseif ext==""
+        echom "no run action associated with empty extension"
+    else
+        echom "no run action associated with extension " . ext
+    endif
 endfunction
 map <C-R> :.call RunC()<cr>
 
