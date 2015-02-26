@@ -12,7 +12,7 @@ fi
 ################ git stuff ##############
 which git>/dev/null
 if [ $? -ne 0 ]; then
-    echo "git not installed, quitting">&2
+    echo "Error: git not installed, quitting">&2
     exit 1
 fi
 git config user.name "Daniel Kats"
@@ -23,7 +23,7 @@ git config user.email "boompigdev@gmail.com"
 BASH_RC="$HOME/.bashrc"
 if [ -f "$BASH_RC" ]
 then
-    echo "Error: $BASH_RC already exists">&2
+    echo "Warning: $BASH_RC already exists">&2
 else
     ln -s "$HERE/bashrc" "$BASH_RC"
 fi
@@ -32,7 +32,7 @@ fi
 ZSH="$HOME/.zshrc"
 if [ -f "$ZSH" ]
 then
-    echo "Error: $ZSH already exists">&2
+    echo "Warning: $ZSH already exists">&2
 else
     ln -s "$HERE/zshrc" "$ZSH"
 fi
@@ -65,7 +65,7 @@ which vim>/dev/null
 if [ $? -eq 0 ]; then
     VIM_RC="$HOME/.vimrc"
     if [ -f "$VIM_RC" ]; then
-        echo "Error: $VIM_RC already exists">&2
+        echo "Warning: $VIM_RC already exists">&2
     else
         # write vimrc
         ln -s "$HERE/vimrc" "$VIM_RC"
