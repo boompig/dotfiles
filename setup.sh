@@ -57,7 +57,7 @@ if [ ! -d "$HOME/.vim/molokai" ]; then
     cp molokai/colors/molokai.vim colors/
     popd
 else
-    echo "Molokai already installed"
+    echo "Warning: Molokai already installed"
 fi
 
 # write vimrc
@@ -85,13 +85,13 @@ if [ $? -eq 0 ]; then
 
     if [ -d ~/.vim/bundle/Vundle.vim ]
     then
-        echo "Vundle is already installed">&2
+        echo "Warning: Vundle is already installed">&2
     else
         git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
 
     vim +PluginInstall +qa
 else
-    echo "Vim not installed">&2
+    echo "Error: Vim not installed">&2
     exit 2
 fi
