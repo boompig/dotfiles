@@ -44,7 +44,7 @@ then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
     popd
 else
-    echo "zsh-syntax-highlighting already installed"
+    echo "Warning: zsh-syntax-highlighting already installed"
 fi
 
 # create vim color dir
