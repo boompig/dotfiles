@@ -47,6 +47,13 @@ else
     echo "zsh-syntax-highlighting already installed"
 fi
 
+# create vim color dir
+VIM_COLOR_DIR="$HOME/.vim/colors"
+if [ ! -d "$VIM_COLOR_DIR" ]
+then
+    mkdir -p "$VIM_COLOR_DIR"
+fi
+
 # clone Molokai scheme
 if [ ! -d "$HOME/.vim/molokai" ]; then
     echo "Installing Molokai colorscheme"
