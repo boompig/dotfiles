@@ -173,7 +173,7 @@ function! Build ()
 endfunction
 map <C-B> :.call Build()<cr>
 
-function! RunC ()
+function! Run ()
     let ext=expand("%:e")
     if ext=="c"
         let fname=bufname("%")
@@ -185,13 +185,16 @@ function! RunC ()
         " do not include .cpp
         let bin_name=strpart(fname, 0, strlen(fname) - 4)
         execute "! g++ " . fname . " -o " . bin_name . "&& ./" . bin_name
+    elseif ext=="sh"
+        let fname=bufname("%")
+        execute "! " . fname
     elseif ext==""
         echom "no run action associated with empty extension"
     else
         echom "no run action associated with extension " . ext
     endif
 endfunction
-map <C-R> :.call RunC()<cr>
+map <C-R> :.call Run()<cr>
 
 function! Py ()
     let fname=bufname("%")
