@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # Written by Daniel Kats
 # This script will automatically setup the dotfiles to 'just work'
