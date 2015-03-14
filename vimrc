@@ -30,7 +30,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-obsession'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplcache.vim'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -188,6 +188,9 @@ function! Run ()
     elseif ext=="sh"
         let fname=bufname("%")
         execute "! " . fname
+    elseif ext=="py"
+        let fname=bufname("%")
+        execute "! python " . fname
     elseif ext==""
         echom "no run action associated with empty extension"
     else
