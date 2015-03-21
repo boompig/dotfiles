@@ -135,3 +135,4 @@ fi
 # set emacs mode
 #set -o vi
 set -o emacs
+alias py='python'

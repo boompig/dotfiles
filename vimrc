@@ -68,9 +68,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " simple switch for set paste
 set pastetoggle=<F2>
 
-" map :nt to :NerdTree
-cnoreabbrev <expr> nt ((getcmdtype() is# ':' && getcmdline() is# 'nt')?('NERDTree'):('nt'))
-
 " show line #s
 set number
 
@@ -128,9 +125,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" faster opening NerdTree
-cnoremap NT NERDTree
-
 " auto-completion
 inoremap <C-Space> <C-X><C-O>
 
@@ -153,18 +147,19 @@ noremap <leader>cpp :.call Cpp()<cr>
 
 function! Build ()
     let ext=expand("%:e")
+    let fname=bufname("%")
     if ext=="js" || ext=="css"
         execute "! grunt build"
     elseif ext=="c"
-        let fname=bufname("%")
         " do not include .c
         let bin_name=strpart(fname, 0, strlen(fname) - 2)
         execute "! gcc " . fname . " -o " . bin_name
     elseif ext=="cpp"
-        let fname=bufname("%")
         " do not include .cpp
         let bin_name=strpart(fname, 0, strlen(fname) - 4)
         execute "! g++ " . fname . " -o " . bin_name
+    elseif ext=="go"
+        execute "! go build " . fname
     elseif ext==""
         echom "no build action associated with empty extension"
     else
@@ -175,22 +170,23 @@ map <C-B> :.call Build()<cr>
 
 function! Run ()
     let ext=expand("%:e")
+    let fname=bufname("%")
     if ext=="c"
-        let fname=bufname("%")
         " do not include .c
         let bin_name=strpart(fname, 0, strlen(fname) - 2)
         execute "! gcc " . fname . " -o " . bin_name . " && ./" . bin_name
     elseif ext=="cpp"
-        let fname=bufname("%")
         " do not include .cpp
         let bin_name=strpart(fname, 0, strlen(fname) - 4)
         execute "! g++ " . fname . " -o " . bin_name . "&& ./" . bin_name
     elseif ext=="sh"
-        let fname=bufname("%")
         execute "! " . fname
     elseif ext=="py"
-        let fname=bufname("%")
         execute "! python " . fname
+    elseif ext=="go"
+        " do not include .go
+        let bin_name=strpart(fname, 0, strlen(fname) - 3)
+        execute "! go build " . fname . " && ./" . bin_name
     elseif ext==""
         echom "no run action associated with empty extension"
     else
