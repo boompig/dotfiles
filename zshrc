@@ -96,6 +96,11 @@ UT_ALIAS_PATH="$HOME/.ut_bash_alias"
 if [ -f "$UT_ALIAS_PATH" ]; then
     source "$UT_ALIAS_PATH"
 fi
+
+MAC_ALIAS_PATH="$HOME/.mac_alias"
+if [ -f "$MAC_ALIAS_PATH" ]; then
+    source "$MAC_ALIAS_PATH"
+fi
 alias ssh-pi='ssh pi@raspberrypi'
 
 SUBLIME_PATH="/opt/sublime_text/sublime_text"
