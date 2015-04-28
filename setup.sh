@@ -41,10 +41,19 @@ if [ ! -d "$HOME/zsh-syntax-highlighting" ]
 then
     # copy zsh color plugin
     pushd "$HOME"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git"
     popd
 else
     echo "Warning: zsh-syntax-highlighting already installed"
+fi
+
+# write tmux prefs
+TMUX="$HOME/.tmux.conf"
+if [ -f "$TMUX" ]
+then
+    echo "Warning: $TMUX already exists">&2
+else
+    ln -s "$HERE/tmux.conf" "$TMUX"
 fi
 
 # create vim color dir
@@ -58,7 +67,7 @@ fi
 if [ ! -d "$HOME/.vim/molokai" ]; then
     echo "Installing Molokai colorscheme"
     pushd "$HOME/.vim"
-    git clone https://github.com/tomasr/molokai.git
+    git clone "https://github.com/tomasr/molokai.git"
 
     # and install it
     cp molokai/colors/molokai.vim colors/
@@ -94,7 +103,7 @@ if [ $? -eq 0 ]; then
     then
         echo "Warning: Vundle is already installed">&2
     else
-        git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        git clone "https://github.com/gmarik/Vundle.vim.git" ~/.vim/bundle/Vundle.vim
     fi
 
     vim +PluginInstall +qa
