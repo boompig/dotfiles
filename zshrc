@@ -136,3 +136,8 @@ fi
 #set -o vi
 set -o emacs
 alias py='python'
+
+if [[ "$TERM" != screen* ]]
+then
+    exec tmux
+fi
