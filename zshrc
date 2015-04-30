@@ -133,11 +133,17 @@ fi
 #############################################################################
 
 # set emacs mode
-#set -o vi
 set -o emacs
 alias py='python'
 
-if [[ "$TERM" != screen* ]]
-then
-    exec tmux
-fi
+export TERM='xterm-256color'
+
+#if [[ "$TERM" != screen* ]]
+#then
+    #exec tmux
+#fi
+
+# git config
+git config --global user.name "Daniel Kats"
+git config --global user.email "dbkats@cs.toronto.edu"
+git config --global core.editor `which vim`
