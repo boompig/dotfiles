@@ -96,7 +96,8 @@ set omnifunc=syntaxcomplete#Complete
 " auto-close HTML tags
 iabbrev </ </<C-X><C-O>
 
-" open tabpanes in right instead of left
+" open tab
+" panes in right instead of left
 set splitright
 set noswapfile
 
@@ -124,6 +125,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+nnoremap <C-Down> <C-W><C-J>
+nnoremap <C-Up> <C-W><C-K>
+nnoremap <C-Right> <C-W><C-L>
+nnoremap <C-Left> <C-W><C-H>
 
 " auto-completion
 inoremap <C-Space> <C-X><C-O>
