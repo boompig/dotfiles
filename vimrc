@@ -20,9 +20,11 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
+Plugin 'hdima/python-syntax.git'
 
 " actual plugins
 Plugin 'tpope/vim-sensible'
+Plugin 'tmhedberg/matchit'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'nelstrom/vim-visual-star-search'
