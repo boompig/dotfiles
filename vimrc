@@ -21,9 +21,12 @@ Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
+Plugin 'hdima/python-syntax.git'
 
 " actual plugins
+Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-sensible'
+Plugin 'tmhedberg/matchit'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'nelstrom/vim-visual-star-search'
