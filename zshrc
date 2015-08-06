@@ -103,6 +103,11 @@ if [ -f "$MAC_ALIAS_PATH" ]; then
 fi
 alias ssh-pi='ssh pi@raspberrypi'
 
+LINUX_ALIAS_PATH="$HOME/.linux_bash_alias"
+if [ -f "$LINUX_ALIAS_PATH" ]; then
+    source "$LINUX_ALIAS_PATH"
+fi
+
 SUBLIME_PATH="/opt/sublime_text/sublime_text"
 if [ -x "$SUBLIME_PATH" ]; then
     alias sublime="$SUBLIME_PATH"
@@ -154,6 +159,8 @@ export TERM='xterm-256color'
 #fi
 
 # git config
-git config --global user.name "Daniel Kats"
-git config --global user.email "dbkats@cs.toronto.edu"
-git config --global core.editor `which vim`
+function git_config {
+    git config --global user.name "Daniel Kats"
+    git config --global user.email "dbkats@cs.toronto.edu"
+    git config --global core.editor `which vim`
+}

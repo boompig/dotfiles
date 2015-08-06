@@ -20,6 +20,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
+Plugin 'petRUShka/vim-opencl'
 Plugin 'hdima/python-syntax.git'
 
 " actual plugins
@@ -112,7 +113,9 @@ let g:go_fmt_autosave = 0
 
 " if file changed outside vim, automatically load newest version
 set autoread
-set foldmethod=manual
+" allow for folding, but open everything by default
+set foldmethod=syntax
+set foldlevel=20
 
 "set noerrorbells
 "set visualbell
@@ -214,6 +217,9 @@ noremap <leader>py :.call Py()<cr>
 " rerun last command
 noremap <leader>rep q:k<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" hide toolbar in gVim
+set guioptions-=T
 
 """" Show current syntax group """"""""""""""""""""""""
 map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
