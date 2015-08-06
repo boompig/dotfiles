@@ -34,6 +34,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -218,4 +219,9 @@ noremap <leader>rep q:k<cr>
 map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""" F-key mappings """"""""""""""""""
+nmap <F8> :TagbarToggle<CR>
+nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
