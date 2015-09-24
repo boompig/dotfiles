@@ -22,6 +22,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'hdima/python-syntax.git'
+Plugin 'mxw/vim-jsx.git'
 
 " actual plugins
 Plugin 'mattn/emmet-vim'
@@ -34,8 +35,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-obsession'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplcache.vim'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
+Plugin 'Shutnik/jshint2.vim'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-easytags'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,6 +53,8 @@ let g:neocomplcache_enable_at_startup = 1
 set runtimepath+=$GOROOT/misc/vim
 " all *.md files refer to markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" allow .js files to have React-style highlighting
+let g:jsx_ext_required = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype plugin indent on
@@ -115,7 +121,7 @@ let g:go_fmt_autosave = 0
 set autoread
 " allow for folding, but open everything by default
 set foldmethod=syntax
-set foldlevel=20
+set nofoldenable
 
 "set noerrorbells
 "set visualbell
@@ -123,8 +129,41 @@ set foldlevel=20
 " for some reason, needs to be set twice
 color molokai
 
-" status line inspired by gary bernhardt
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+"""""""""""""""""""" Pretty statusline """""""""""""""""""""""""
+" first, enable status line always
+set laststatus=2
+
+function! SetStatusline()
+    set statusline+=%#warningmsg#
+    set statusline+=\ %<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+    set statusline+=%*
+endfunction
+
+function! InsertStatusline(mode)
+    if a:mode == 'i'
+        hi StatusLine term=reverse ctermbg=White ctermfg=6 gui=bold,reverse
+        set statusline=\ INSERT\ 
+    elseif a:mode == 'r'
+        hi StatusLine term=reverse ctermbg=White ctermfg=5 gui=bold,reverse
+        set statusline=\ REPLACE\ 
+    endif
+    call SetStatusline()
+endfunction
+
+function! NormalStatusline()
+    hi StatusLine term=reverse ctermbg=22 ctermfg=46 gui=reverse
+    set statusline=\ NORMAL\ 
+    call SetStatusline()
+endfunction
+
+" now set it up to change the status line based on mode
+if version >= 700
+    au InsertEnter * call InsertStatusline(v:insertmode)
+    au InsertChange * call InsertStatusline(v:insertmode)
+    au InsertLeave * call NormalStatusline()
+endif
+call NormalStatusline()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Keyboard shortcuts
 " shortcut for faster moving between windows
@@ -231,3 +270,11 @@ map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""" Pretty tab-bar """"""""""""""""""""
+hi TabLineFill ctermfg=8 ctermbg=Black
+hi TabLine ctermfg=LightGrey ctermbg=8
+hi TabLineSel ctermfg=White ctermbg=4
+" always show tab bar
+set showtabline=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
