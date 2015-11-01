@@ -25,6 +25,7 @@ Plugin 'hdima/python-syntax.git'
 Plugin 'mxw/vim-jsx.git'
 
 " actual plugins
+" this plugin auto-generates boilerplate HTML
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tmhedberg/matchit'
@@ -32,20 +33,36 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-obsession'
+"Plugin 'tpope/vim-obsession'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplcache.vim'
 "Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
+"Plugin 'majutsushi/tagbar'
 Plugin 'Shutnik/jshint2.vim'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-easytags'
+" this plugin only exists to show current branch info in statusline
+Plugin 'tpope/vim-fugitive'
+" this is the statusline plugin
+"Plugin 'bling/vim-airline'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
 let g:neocomplcache_enable_at_startup = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""" airline  """"""""""""""""""""""""""""""""""""
+"" use pretty symbols
+"let g:airline_powerline_fonts = 1
+"" disable a few extensions
+"let g:airline#extensions#whitespace#enabled = 0
+"let g:airline#extensions#branch#enabled = 1
+"let g:airline_section_y = ' '
+"let g:airline_section_z = ' '
+"" make tabs pretty
+"let g:airline#extensions#tabline#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Language-Specific """""""""""""""""""""""""""
@@ -73,6 +90,11 @@ endfunc
 
 " super pro remapping of vim colon to semi-colon
 nnoremap ; :
+
+"automatically apply vimrc changes on write
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
 " reload vimrc quickly
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -127,7 +149,7 @@ set nofoldenable
 "set visualbell
 
 " for some reason, needs to be set twice
-color molokai
+colorscheme molokai
 
 """""""""""""""""""" Pretty statusline """""""""""""""""""""""""
 " first, enable status line always
