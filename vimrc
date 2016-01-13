@@ -21,7 +21,7 @@ Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
-Plugin 'hdima/python-syntax.git'
+"Plugin 'hdima/python-syntax.git'
 Plugin 'mxw/vim-jsx.git'
 
 " actual plugins
@@ -45,6 +45,7 @@ Plugin 'Shutnik/jshint2.vim'
 Plugin 'tpope/vim-fugitive'
 " this is the statusline plugin
 "Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,9 +93,9 @@ endfunc
 nnoremap ; :
 
 "automatically apply vimrc changes on write
-if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+"if has("autocmd")
+    "autocmd bufwritepost .vimrc source $MYVIMRC
+"endif
 
 " reload vimrc quickly
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -155,36 +156,36 @@ colorscheme molokai
 " first, enable status line always
 set laststatus=2
 
-function! SetStatusline()
-    set statusline+=%#warningmsg#
-    set statusline+=\ %<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-    set statusline+=%*
-endfunction
+"function! SetStatusline()
+    "set statusline+=%#warningmsg#
+    "set statusline+=\ %<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+    "set statusline+=%*
+"endfunction
 
-function! InsertStatusline(mode)
-    if a:mode == 'i'
-        hi StatusLine term=reverse ctermbg=White ctermfg=6 gui=bold,reverse
-        set statusline=\ INSERT\ 
-    elseif a:mode == 'r'
-        hi StatusLine term=reverse ctermbg=White ctermfg=5 gui=bold,reverse
-        set statusline=\ REPLACE\ 
-    endif
-    call SetStatusline()
-endfunction
+"function! InsertStatusline(mode)
+    "if a:mode == 'i'
+        "hi StatusLine term=reverse ctermbg=White ctermfg=6 gui=bold,reverse
+        "set statusline=\ INSERT\ 
+    "elseif a:mode == 'r'
+        "hi StatusLine term=reverse ctermbg=White ctermfg=5 gui=bold,reverse
+        "set statusline=\ REPLACE\ 
+    "endif
+    "call SetStatusline()
+"endfunction
 
-function! NormalStatusline()
-    hi StatusLine term=reverse ctermbg=22 ctermfg=46 gui=reverse
-    set statusline=\ NORMAL\ 
-    call SetStatusline()
-endfunction
+"function! NormalStatusline()
+    "hi StatusLine term=reverse ctermbg=22 ctermfg=46 gui=reverse
+    "set statusline=\ NORMAL\ 
+    "call SetStatusline()
+"endfunction
 
-" now set it up to change the status line based on mode
-if version >= 700
-    au InsertEnter * call InsertStatusline(v:insertmode)
-    au InsertChange * call InsertStatusline(v:insertmode)
-    au InsertLeave * call NormalStatusline()
-endif
-call NormalStatusline()
+"" now set it up to change the status line based on mode
+"if version >= 700
+    "au InsertEnter * call InsertStatusline(v:insertmode)
+    "au InsertChange * call InsertStatusline(v:insertmode)
+    "au InsertLeave * call NormalStatusline()
+"endif
+"call NormalStatusline()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Keyboard shortcuts
@@ -300,3 +301,5 @@ hi TabLineSel ctermfg=White ctermbg=4
 " always show tab bar
 set showtabline=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+" yank directly into system clipboard
+set clipboard=unnamed
