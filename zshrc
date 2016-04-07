@@ -164,3 +164,5 @@ function git_config {
     git config --global user.email "dbkats@cs.toronto.edu"
     git config --global core.editor `which vim`
 }
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -93,3 +93,5 @@ git config --global core.editor vim
 if [ -f ~/.git-completion.sh ]; then
     source ~/.git-completion.sh
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

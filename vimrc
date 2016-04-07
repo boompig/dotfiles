@@ -23,9 +23,13 @@ Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
 "Plugin 'hdima/python-syntax.git'
 Plugin 'mxw/vim-jsx.git'
+" Plugin 'tmhedberg/SimpylFold'
+" Plugin 'lervag/vimtex'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " actual plugins
 " this plugin auto-generates boilerplate HTML
+Plugin 'rking/ag.vim.git'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tmhedberg/matchit'
@@ -80,14 +84,15 @@ syntax on
 set background=dark
 set t_Co=256
 
-" syntax inspector
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+"""""""""""""""""""""" syntax inspector """""""""""""""""""""""""""""""
+"nmap <C-S-P> :call <SID>SynStack()<CR>
+"function! <SID>SynStack()
+    "if !exists("*synstack")
+        "return
+    "endif
+    "echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"endfunc
+"""""""""""""""""""""" syntax inspector """""""""""""""""""""""""""""""
 
 " super pro remapping of vim colon to semi-colon
 nnoremap ; :
@@ -115,10 +120,12 @@ set softtabstop=4
 set showmatch
 
 " show whitespace
-set list
+"set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set nolist
 
 set hlsearch
+set incsearch
 
 set cindent
 " backslash is harder to reach
@@ -133,6 +140,7 @@ iabbrev </ </<C-X><C-O>
 " open tab
 " panes in right instead of left
 set splitright
+set splitbelow
 set noswapfile
 
 " vim-go folds everything by default, which is annoying.
@@ -241,7 +249,7 @@ function! Build ()
         echom "no build action associated with extension " . ext
     endif
 endfunction
-map <C-B> :.call Build()<cr>
+" map <C-B> :.call Build()<cr>
 
 function! Run ()
     let ext=expand("%:e")
@@ -268,7 +276,7 @@ function! Run ()
         echom "no run action associated with extension " . ext
     endif
 endfunction
-map <C-R> :.call Run()<cr>
+" map <C-R> :.call Run()<cr>
 
 function! Py ()
     let fname=bufname("%")
@@ -279,6 +287,13 @@ noremap <leader>py :.call Py()<cr>
 " rerun last command
 noremap <leader>rep q:k<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""" (Maybe temporarily) disable arrow keys in insert mode """""""
+nmap <Up> <nop>
+nmap <Down> <nop>
+nmap <Left> <nop>
+nmap <Right> <nop>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " hide toolbar in gVim
 set guioptions-=T
@@ -293,6 +308,17 @@ map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""" Special rules for Tex
+function TexRules()
+    set background=light
+    set wrap
+    set linebreak
+    colorscheme github
+    set spell
+endfunc
+autocmd FileType tex call TexRules()
+""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
 hi TabLineFill ctermfg=8 ctermbg=Black
