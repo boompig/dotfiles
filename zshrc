@@ -41,7 +41,8 @@ if [ $USER = "root" ]
 then
     PROMPT="%{$fg_bold[red]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}$ %{$reset_color%}"
 else
-    PROMPT="%{$fg_bold[blue]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}$ %{$reset_color%}"
+    PROMPT="%{$fg_bold[blue]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}
+$ %{$reset_color%}"
 fi
 
 # do right-prompt
@@ -145,6 +146,12 @@ if [ $? -ne 0 ]; then
     fi
 fi
 
+MAC_CMAKE_PATH="/Applications/CMake.app/Contents/bin"
+if [ -d "$MAC_CMAKE_PATH" ]
+then
+    export PATH="$PATH:$MAC_CMAKE_PATH"
+fi
+
 #############################################################################
 
 # set emacs mode
@@ -166,3 +173,7 @@ function git_config {
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+bindkey -e
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
