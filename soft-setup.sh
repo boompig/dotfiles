@@ -1,9 +1,10 @@
-if [ `uname | grep -i 'linux'` ]; then
+if [ $(which apt-get &>/dev/null) ]; then
     # tools needed for basic computer survival
-    sudo apt-get install zsh
-    sudo apt-get install vim git tig
-    sudo apt-get install tmux
-    sudo apt-get install python-pip python3
+    sudo apt-get install -y zsh tmux
+    sudo apt-get install -y vim git tig
+    sudo apt-get install -y tmux
+    sudo apt-get install -y python-pip python3 python3-pip
+    sudo pip install virtualenv
 else
-    echo "This file is for Linux only"
+    echo 'This file is for systems which have `apt-get` only'
 fi
