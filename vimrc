@@ -310,7 +310,7 @@ nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """" Special rules for Tex
-function TexRules()
+function! TexRules()
     set background=light
     set wrap
     set linebreak
@@ -329,3 +329,6 @@ set showtabline=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " yank directly into system clipboard
 set clipboard=unnamed
+
+" allow buffers to be in the background
+set hidden
