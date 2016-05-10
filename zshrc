@@ -88,9 +88,9 @@ vims () {
 }
 export vims
 
-YELP_ALIAS_PATH="$HOME/.yelp_bash_alias"
-if [ -f "$YELP_ALIAS_PATH" ]; then
-    source "$YELP_ALIAS_PATH"
+SYMANTEC_ALIAS_PATH="$HOME/.symantec_bash_alias"
+if [ -f "$SYMANTEC_ALIAS_PATH" ]; then
+    source "$SYMANTEC_ALIAS_PATH"
 fi
 
 UT_ALIAS_PATH="$HOME/.ut_bash_alias"

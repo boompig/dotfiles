@@ -22,6 +22,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
 "Plugin 'hdima/python-syntax.git'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx.git'
 " Plugin 'tmhedberg/SimpylFold'
 " Plugin 'lervag/vimtex'
@@ -50,6 +51,8 @@ Plugin 'tpope/vim-fugitive'
 " this is the statusline plugin
 "Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
+Plugin 'ap/vim-buftabline'
+Plugin 'tpope/vim-unimpaired'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -332,3 +335,7 @@ set clipboard=unnamed
 
 " allow buffers to be in the background
 set hidden
+
+" change :wq and :q behaviour - treat buffers as if they were tabs
+"cnoreabbrev wq w<bar>bdelete
+"cnoreabbrev q bdelete
