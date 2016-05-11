@@ -53,6 +53,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'itchyny/lightline.vim'
 Plugin 'ap/vim-buftabline'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-scripts/closetag.vim'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
