@@ -337,6 +337,12 @@ set clipboard=unnamed
 " allow buffers to be in the background
 set hidden
 
+""""""""""""" Ctrl-p options """"""""""""""""""""
+let g:ctrlp_custom_ignore = {
+            \ 'file': '\v\.(pyc)'
+            \}
+""""""""""""" Ctrl-p options """"""""""""""""""""
+
 " change :wq and :q behaviour - treat buffers as if they were tabs
 "cnoreabbrev wq w<bar>bdelete
 "cnoreabbrev q bdelete
