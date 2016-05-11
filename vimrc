@@ -27,6 +27,8 @@ Plugin 'mxw/vim-jsx.git'
 " Plugin 'tmhedberg/SimpylFold'
 " Plugin 'lervag/vimtex'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+" Python docs in vim
+Plugin 'davidhalter/jedi'
 
 " actual plugins
 " this plugin auto-generates boilerplate HTML
@@ -342,6 +344,10 @@ let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(pyc)'
             \}
 """"""""""""" Ctrl-p options """"""""""""""""""""
+
+""""""""""""" vim-json options """"""""""""""""""
+let g:vim_json_syntax_conceal = 0
+""""""""""""" vim-json options """"""""""""""""""
 
 " change :wq and :q behaviour - treat buffers as if they were tabs
 "cnoreabbrev wq w<bar>bdelete
