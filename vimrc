@@ -50,6 +50,8 @@ Plugin 'tpope/vim-fugitive'
 " this is the statusline plugin
 "Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
+Plugin 'ap/vim-buftabline'
+Plugin 'tpope/vim-unimpaired'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
