@@ -22,36 +22,45 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
 "Plugin 'hdima/python-syntax.git'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx.git'
 " Plugin 'tmhedberg/SimpylFold'
 " Plugin 'lervag/vimtex'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+" Python docs in vim
+Plugin 'davidhalter/jedi'
+Plugin 'Shutnik/jshint2.vim'
 
 " actual plugins
-" this plugin auto-generates boilerplate HTML
 Plugin 'rking/ag.vim.git'
+" this plugin auto-generates boilerplate HTML
 Plugin 'mattn/emmet-vim'
+" good vim defaults
 Plugin 'tpope/vim-sensible'
+" extended % matching to HTML
 Plugin 'tmhedberg/matchit'
+" easy comment/uncomment
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'godlygeek/tabular'
+" easily align text into columns
+"Plugin 'godlygeek/tabular'
+" better star search
 Plugin 'nelstrom/vim-visual-star-search'
+" better file browser
 Plugin 'scrooloose/nerdtree'
-"Plugin 'tpope/vim-obsession'
+" better file finder
 Plugin 'kien/ctrlp.vim'
+" autocomplete
 Plugin 'Shougo/neocomplcache.vim'
-"Plugin 'airblade/vim-gitgutter'
-"Plugin 'majutsushi/tagbar'
-Plugin 'Shutnik/jshint2.vim'
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-easytags'
 " this plugin only exists to show current branch info in statusline
 Plugin 'tpope/vim-fugitive'
 " this is the statusline plugin
-"Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
+" display buffers as tabs
 Plugin 'ap/vim-buftabline'
+" shortcuts for fast switching between buffers
 Plugin 'tpope/vim-unimpaired'
+" autoclose HTML
+Plugin 'vim-scripts/closetag.vim'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -334,3 +343,17 @@ set clipboard=unnamed
 
 " allow buffers to be in the background
 set hidden
+
+""""""""""""" Ctrl-p options """"""""""""""""""""
+let g:ctrlp_custom_ignore = {
+            \ 'file': '\v\.(pyc)'
+            \}
+""""""""""""" Ctrl-p options """"""""""""""""""""
+
+""""""""""""" vim-json options """"""""""""""""""
+let g:vim_json_syntax_conceal = 0
+""""""""""""" vim-json options """"""""""""""""""
+
+" change :wq and :q behaviour - treat buffers as if they were tabs
+"cnoreabbrev wq w<bar>bdelete
+"cnoreabbrev q bdelete
