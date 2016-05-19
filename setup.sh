@@ -63,7 +63,7 @@ then
     mkdir -p "$VIM_COLOR_DIR"
 fi
 
-# clone Molokai scheme
+# clone Molokai colorscheme
 if [ ! -d "$HOME/.vim/molokai" ]; then
     echo "Installing Molokai colorscheme"
     pushd "$HOME/.vim"
@@ -73,7 +73,18 @@ if [ ! -d "$HOME/.vim/molokai" ]; then
     cp molokai/colors/molokai.vim colors/
     popd
 else
-    echo "Warning: Molokai already installed"
+    echo "Warning: Molokai colorscheme already installed"
+fi
+
+# clone Github colorscheme
+if [ ! -d "$HOME/.vim/vim-github-colorscheme" ]; then
+    echo "Installing Github colorscheme"
+    pushd "$HOME/.vim"
+    git clone "https://github.com/endel/vim-github-colorscheme.git"
+    cp vim-github-colorscheme/colors/github.vim colors/
+    popd
+else
+    echo "Warning: Github color scheme already installed"
 fi
 
 # write vimrc

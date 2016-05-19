@@ -22,7 +22,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
 "Plugin 'hdima/python-syntax.git'
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx.git'
 " Plugin 'tmhedberg/SimpylFold'
 " Plugin 'lervag/vimtex'
@@ -165,47 +165,11 @@ set autoread
 set foldmethod=syntax
 set nofoldenable
 
-"set noerrorbells
-"set visualbell
-
-" for some reason, needs to be set twice
 colorscheme molokai
 
-"""""""""""""""""""" Pretty statusline """""""""""""""""""""""""
-" first, enable status line always
+" enable status line always
 set laststatus=2
 
-"function! SetStatusline()
-    "set statusline+=%#warningmsg#
-    "set statusline+=\ %<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-    "set statusline+=%*
-"endfunction
-
-"function! InsertStatusline(mode)
-    "if a:mode == 'i'
-        "hi StatusLine term=reverse ctermbg=White ctermfg=6 gui=bold,reverse
-        "set statusline=\ INSERT\ 
-    "elseif a:mode == 'r'
-        "hi StatusLine term=reverse ctermbg=White ctermfg=5 gui=bold,reverse
-        "set statusline=\ REPLACE\ 
-    "endif
-    "call SetStatusline()
-"endfunction
-
-"function! NormalStatusline()
-    "hi StatusLine term=reverse ctermbg=22 ctermfg=46 gui=reverse
-    "set statusline=\ NORMAL\ 
-    "call SetStatusline()
-"endfunction
-
-"" now set it up to change the status line based on mode
-"if version >= 700
-    "au InsertEnter * call InsertStatusline(v:insertmode)
-    "au InsertChange * call InsertStatusline(v:insertmode)
-    "au InsertLeave * call NormalStatusline()
-"endif
-"call NormalStatusline()
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Keyboard shortcuts
 " shortcut for faster moving between windows
@@ -320,7 +284,7 @@ nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" Special rules for Tex
+"""" Special rules for Tex and markdown
 function! TexRules()
     set background=light
     set wrap
@@ -329,7 +293,8 @@ function! TexRules()
     set spell
 endfunc
 autocmd FileType tex call TexRules()
-""""
+autocmd FileType markdown call TexRules()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
 hi TabLineFill ctermfg=8 ctermbg=Black
@@ -339,7 +304,7 @@ hi TabLineSel ctermfg=White ctermbg=4
 set showtabline=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " yank directly into system clipboard
-set clipboard=unnamed
+"set clipboard=unnamed
 
 " allow buffers to be in the background
 set hidden
@@ -353,7 +318,3 @@ let g:ctrlp_custom_ignore = {
 """"""""""""" vim-json options """"""""""""""""""
 let g:vim_json_syntax_conceal = 0
 """"""""""""" vim-json options """"""""""""""""""
-
-" change :wq and :q behaviour - treat buffers as if they were tabs
-"cnoreabbrev wq w<bar>bdelete
-"cnoreabbrev q bdelete
