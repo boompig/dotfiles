@@ -9,15 +9,28 @@ else
     HERE="$(pwd)"
 fi
 
-which git>/dev/null
-if [ $? -ne 0 ]; then
-    echo "Error: git not installed, quitting">&2
-    exit 1
-fi
+
+git_or_exit() {
+    which git>/dev/null
+    if [ $? -ne 0 ]; then
+        echo "Error: git not installed, quitting">&2
+        exit 1
+    fi
+}
+
+vim_or_exit() {
+    which vim>/dev/null
+    if [ $? -ne 0 ]; then
+        echo "Error: vim not installed, quitting">&2
+        exit 1
+    fi
+}
 
 configure_git() {
-    git config user.name "Daniel Kats"
-    git config user.email "boompigdev@gmail.com"
+    git config --global user.name "Daniel Kats"
+    git config --global user.email "boompigdev@gmail.com"
+    git config --global core.editor "$(which vim)"
+    git config --global push.default simple
 }
 
 install_bashrc() {
@@ -131,6 +144,8 @@ install_my_vim_colorscheme() {
     fi
 }
 
+git_or_exit
+vim_or_exit
 configure_git
 install_bashrc
 install_zshrc
