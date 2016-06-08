@@ -1,4 +1,5 @@
-if [ $(which apt-get &>/dev/null) ]; then
+which apt-get &>/dev/null
+if [ $? -eq 0 ]; then
     # tools needed for basic computer survival
     sudo apt-get install -y zsh tmux
     sudo apt-get install -y vim git tig

@@ -114,9 +114,10 @@ if [ -x "$SUBLIME_PATH" ]; then
     alias sublime="$SUBLIME_PATH"
 fi
 
-PSQL_PATH='/Applications/Postgres.app/Contents/Versions/9.4/bin'
-if [ -d "$PSQL_PATH" ]; then
-    PATH="$PATH:$PSQL_PATH"
+local psql_app_path='/Applications/Postgres.app'
+if [ -d "$psql_app_path" ]; then
+    local psql_bin_path=$(find "$psql_app_path/Contents/Versions" -name 'bin')
+    PATH="$PATH:$psql_bin_path"
 fi
 
 ZSH_COLOR_PLUGIN="$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
