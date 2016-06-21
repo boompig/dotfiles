@@ -21,15 +21,19 @@ Plugin 'elzr/vim-json'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
 Plugin 'petRUShka/vim-opencl'
+" disabled because it stops highlighting print functions
 "Plugin 'hdima/python-syntax.git'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx.git'
-" Plugin 'tmhedberg/SimpylFold'
+" syntax folding for Python
+Plugin 'tmhedberg/SimpylFold'
 " Plugin 'lervag/vimtex'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-Plugin 'davidhalter/jedi'
+"Plugin 'davidhalter/jedi'
 Plugin 'Shutnik/jshint2.vim'
+" Scala
+Plugin 'derekwyatt/vim-scala'
 
 " actual plugins
 Plugin 'rking/ag.vim.git'
@@ -50,7 +54,7 @@ Plugin 'scrooloose/nerdtree'
 " better file finder
 Plugin 'kien/ctrlp.vim'
 " autocomplete
-Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neocomplete.vim'
 " this plugin only exists to show current branch info in statusline
 Plugin 'tpope/vim-fugitive'
 " this is the statusline plugin
@@ -61,12 +65,15 @@ Plugin 'ap/vim-buftabline'
 Plugin 'tpope/vim-unimpaired'
 " autoclose HTML
 Plugin 'vim-scripts/closetag.vim'
+" faster folding
+Plugin 'Konfekt/FastFold'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" airline  """"""""""""""""""""""""""""""""""""
@@ -162,7 +169,7 @@ let g:go_fmt_autosave = 0
 " if file changed outside vim, automatically load newest version
 set autoread
 " allow for folding, but open everything by default
-set foldmethod=syntax
+"set foldmethod=syntax
 set nofoldenable
 
 colorscheme molokai
