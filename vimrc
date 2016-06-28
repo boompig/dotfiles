@@ -270,6 +270,10 @@ noremap <leader>py :.call Py()<cr>
 noremap <leader>rep q:k<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""" Disable ex mode """"""
+nnoremap Q <Nop>
+"""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""" (Maybe temporarily) disable arrow keys in insert mode """""""
 nmap <Up> <nop>
 nmap <Down> <nop>
