@@ -37,6 +37,10 @@ Plug 'derekwyatt/vim-scala'
 Plug 'hashivim/vim-terraform'
 " Gradle (Java build tool)
 Plug 'https://github.com/tfnico/vim-gradle.git'
+" HTML5
+Plug 'othree/html5.vim'
+" CSS3
+Plug 'hail2u/vim-css3-syntax'
 
 " actual plugins
 Plug 'rking/ag.vim'
