@@ -174,7 +174,7 @@ export TERM='xterm-256color'
 function git_config {
     git config --global user.name "Daniel Kats"
     git config --global user.email "dbkats@cs.toronto.edu"
-    git config --global core.editor `which vim`
+	git config --global core.editor $(which vim)
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -184,3 +184,6 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey "^[[3~" delete-char
 
+# set vim as the editor
+export VISUAL=$(which vim)
+export EDITOR=$(which vim)
