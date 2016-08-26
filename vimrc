@@ -11,70 +11,70 @@ filetype plugin indent off
 """""""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""" Vundle """"""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+""""""""""""""""""""""" vim-plug """"""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
 " language-specific stuff
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'elzr/vim-json'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'fatih/vim-go'
-Plugin 'petRUShka/vim-opencl'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'elzr/vim-json'
+Plug 'digitaltoad/vim-jade'
+Plug 'fatih/vim-go'
+Plug 'petRUShka/vim-opencl'
 " disabled because it stops highlighting print functions
-"Plugin 'hdima/python-syntax.git'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx.git'
+"Plug 'hdima/python-syntax.git'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 " syntax folding for Python
-Plugin 'tmhedberg/SimpylFold'
-" Plugin 'lervag/vimtex'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'tmhedberg/SimpylFold'
+" Plug 'lervag/vimtex'
+Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-Plugin 'davidhalter/jedi'
-Plugin 'Shutnik/jshint2.vim'
+Plug 'davidhalter/jedi'
+Plug 'Shutnik/jshint2.vim'
 " Scala
-Plugin 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 " Terraform
-Plugin 'hashivim/vim-terraform.git'
+Plug 'hashivim/vim-terraform'
 " Gradle (Java build tool)
-Plugin 'https://github.com/tfnico/vim-gradle.git'
+Plug 'https://github.com/tfnico/vim-gradle.git'
 
 " actual plugins
-Plugin 'rking/ag.vim.git'
+Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 " good vim defaults
-Plugin 'tpope/vim-sensible'
+Plug 'tpope/vim-sensible'
 " extended % matching to HTML
-Plugin 'tmhedberg/matchit'
+Plug 'tmhedberg/matchit'
 " easy comment/uncomment
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " easily align text into columns
-"Plugin 'godlygeek/tabular'
+"Plug 'godlygeek/tabular'
 " better star search
-Plugin 'nelstrom/vim-visual-star-search'
-" better file browser
-Plugin 'scrooloose/nerdtree'
+Plug 'nelstrom/vim-visual-star-search'
+" better file browser. disabled because slow to start up
+"Plug 'scrooloose/nerdtree'
 " better file finder
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " autocomplete
-Plugin 'Shougo/neocomplete.vim'
-" this plugin only exists to show current branch info in statusline
-Plugin 'tpope/vim-fugitive'
+Plug 'Shougo/neocomplete.vim'
+" this plugin only exists to show current branch info in statusline. disabled
+" because slow to start up
+"Plug 'tpope/vim-fugitive'
 " this is the statusline plugin
-Plugin 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 " display buffers as tabs
-Plugin 'ap/vim-buftabline'
+Plug 'ap/vim-buftabline'
 " shortcuts for fast switching between buffers
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 " autoclose HTML
-Plugin 'vim-scripts/closetag.vim'
+Plug 'vim-scripts/closetag.vim'
 " faster folding
-Plugin 'Konfekt/FastFold'
+Plug 'Konfekt/FastFold'
 " import sorting for Python
-Plugin 'fisadev/vim-isort'
+Plug 'fisadev/vim-isort'
 
-call vundle#end()
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
@@ -298,7 +298,7 @@ map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>
 
 """"""""""""""""""""" F-key mappings """"""""""""""""""
 nmap <F8> :TagbarToggle<CR>
-nmap <F7> :NERDTreeToggle<CR>
+"nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """" Special rules for Tex and markdown
