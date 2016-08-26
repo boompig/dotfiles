@@ -30,10 +30,14 @@ Plugin 'tmhedberg/SimpylFold'
 " Plugin 'lervag/vimtex'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-"Plugin 'davidhalter/jedi'
+Plugin 'davidhalter/jedi'
 Plugin 'Shutnik/jshint2.vim'
 " Scala
 Plugin 'derekwyatt/vim-scala'
+" Terraform
+Plugin 'hashivim/vim-terraform.git'
+" Gradle (Java build tool)
+Plugin 'https://github.com/tfnico/vim-gradle.git'
 
 " actual plugins
 Plugin 'rking/ag.vim.git'
@@ -67,6 +71,8 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/closetag.vim'
 " faster folding
 Plugin 'Konfekt/FastFold'
+" import sorting for Python
+Plugin 'fisadev/vim-isort'
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -131,16 +137,16 @@ set number
 " tabs are 4 spaces
 set tabstop=4
 set shiftwidth=4
-set expandtab
+"set expandtab
 set shiftround
 set softtabstop=4
 " show matching parens
 set showmatch
 
 " show whitespace
-"set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set nolist
+set list
+set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+"set nolist
 
 set hlsearch
 set incsearch
@@ -322,7 +328,7 @@ set hidden
 
 """"""""""""" Ctrl-p options """"""""""""""""""""
 let g:ctrlp_custom_ignore = {
-            \ 'file': '\v\.(pyc)'
+            \ 'file': '\v\.(pyc|class)'
             \}
 """"""""""""" Ctrl-p options """"""""""""""""""""
 

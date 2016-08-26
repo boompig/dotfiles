@@ -130,9 +130,13 @@ if [ -d "/usr/local/heroku/bin" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
-# on Mac, make sure using homebrew version of executables
-if [ -d "/usr/local/bin" ]; then
+is_mac=$(uname -a | grep -o Darwin >/dev/null && echo 1 || echo 0)
+
+# Mac only: homebrew settings
+if [ $is_mac ] && [ -d "/usr/local/bin" ]; then
+	# make sure we are using homebrew version of executables
     export PATH="/usr/local/bin:$PATH"
+	export HOMEBREW_NO_ANALYTICS=1
 fi
 
 if [ -e "$HOME/.printer-prefs" ]; then
