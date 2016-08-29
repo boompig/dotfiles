@@ -127,13 +127,14 @@ install_vimrc() {
 }
 
 install_vim_plugins() {
-    if [ -d "$HOME/.vim/bundle/Vundle.vim" ]
+    if [ -d "$HOME/.vim/autoload/plug.vim" ]
     then
         echo "Warning: Vundle is already installed">&2
     else
-        git clone "https://github.com/gmarik/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
+		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
-    vim +PluginInstall +qa
+    vim +PlugInstall +qa
 }
 
 install_my_vim_colorscheme() {
