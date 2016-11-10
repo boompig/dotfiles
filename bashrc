@@ -11,20 +11,16 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 if [ -e /etc/lsb-release ]; then
-	alias ls='ls --color=auto'
+    alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias git-grep='git-grep --color=auto'
 else
-	# on Mac
-	alias ls='ls -G'
+    # on Mac
+    alias ls='ls -G'
 fi
 
 # on linux, set alias for open command
 uname -a | grep -io linux>/dev/null && alias open='xdg-open'
-
-# use vim bindings for bash
-set -o vi
-
 
 alias ll='ls -l'
 
@@ -35,7 +31,7 @@ fi
 
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
-	source ~/.yelp_bash_alias
+    source ~/.yelp_bash_alias
 fi
 
 # javascript stuff
@@ -63,14 +59,15 @@ BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
 BGreen='\[\033[1;32m\]'
 BYellow='\[\033[1;33m\]'
+BBlue='\[\033[1;34m\]'
 
 # Enable git prompt
 if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
-	source ${GIT_COMPLETE}
-	source ${GIT_PROMPT}
-	export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${BPurple}\$${ColorOff} "
+    source ${GIT_COMPLETE}
+    source ${GIT_PROMPT}
+    export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff}\n${BPurple}\$${ColorOff} "
 else
-	export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
+    export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${BPurple}\n \$${ColorOff} "
 fi
 
 PATH="/usr/local/bin:${PATH}"
