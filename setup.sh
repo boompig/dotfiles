@@ -30,7 +30,13 @@ configure_git() {
     git config --global user.name "Daniel Kats"
     git config --global user.email "boompigdev@gmail.com"
     git config --global core.editor "$(which vim)"
-    git config --global push.default simple
+    local git_version=$(git --version | sed 's/git version //')
+    if [ $(echo "$git_version" | egrep '^2') ]; then
+        echo "Performing git v2+ configuration"
+        git config --global push.default simple
+    else
+        echo "Git version is $git_version < 2, ignoring git 2+ configuration"
+    fi
 }
 
 install_bashrc() {
