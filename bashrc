@@ -1,6 +1,3 @@
-# Written by Daniel Kats
-# May 27, 2014
-
 ######## GLOBAL VARS #########
 LS_COLORS_FILE="${HOME}/dotfiles/config/dircolors.ansi-dark"
 GIT_COMPLETE="${HOME}/dotfiles/config/git-completion.bash"
@@ -26,17 +23,12 @@ alias ll='ls -l'
 
 if [ -e /Applications/Postgres.App ]; then
     #alias psql='/Applications/Postgres.app/Contents//Versions/9.3/bin/psql'
-    PATH="/Applications/Postgres.app/Contents//Versions/9.3/bin:$PATH"
+    export PATH="/Applications/Postgres.app/Contents//Versions/9.3/bin:$PATH"
 fi
 
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
     source ~/.yelp_bash_alias
-fi
-
-# javascript stuff
-if [ -d ~/node_modules ] && [ -d ~/node_modules/jshint ]; then
-    PATH="$HOME/node_modules/jshint/bin:$PATH"
 fi
 
 ##-ANSI-COLOR-CODES-##
@@ -70,18 +62,11 @@ else
     export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${BPurple}\n \$${ColorOff} "
 fi
 
+# make sure to read /usr/local/bin before anything else in PATH
 PATH="/usr/local/bin:${PATH}"
 
 # set the terminal to be 256-color compatible
 export TERM="xterm-256color"
-
-### Added for the Heroku Toolbelt
-if [ -d /usr/local/heroku ]; then
-    export PATH="/usr/local/heroku/bin:$PATH"
-fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # set vim as default editor
 git config --global core.ui true
@@ -91,4 +76,28 @@ if [ -f ~/.git-completion.sh ]; then
     source ~/.git-completion.sh
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+function add_to_path {
+    local dir="$1"
+    if [ ! -d "$dir" ]; then
+        echo "$dir does not exist"
+    else
+        if [ ! $(echo $PATH | grep $dir) ]; then
+            echo "Adding $dir to PATH..."
+            export PATH="$PATH:$dir"
+        else
+            echo "$dir already on path..."
+        fi
+    fi
+}
+
+### Added by the Heroku Toolbelt
+add_to_path "/usr/local/heroku/bin"
+
+# Add RVM to PATH for scripting
+add_to_path "$HOME/.rvm/bin"
+
+# add Spark to PATH
+add_to_path "/opt/spark-2.0.1-bin-hadoop2.6/bin"
+
+# javascript stuff
+add_to_path "$HOME/node_modules/jshint/bin"
