@@ -46,6 +46,8 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
 Plug 'mattn/emmet-vim'
+" Python tooling
+Plug 'davidhalter/jedi-vim'
 " good vim defaults
 Plug 'tpope/vim-sensible'
 " extended % matching to HTML
@@ -77,6 +79,8 @@ Plug 'vim-scripts/closetag.vim'
 Plug 'Konfekt/FastFold'
 " import sorting for Python
 Plug 'fisadev/vim-isort'
+" allows for async make
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -141,15 +145,15 @@ set number
 " tabs are 4 spaces
 set tabstop=4
 set shiftwidth=4
-"set expandtab
+set expandtab
 set shiftround
 set softtabstop=4
 " show matching parens
 set showmatch
 
 " show whitespace
-set list
-set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+"set list
+"set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 "set nolist
 
 set hlsearch
@@ -303,6 +307,7 @@ map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>
 """"""""""""""""""""" F-key mappings """"""""""""""""""
 nmap <F8> :TagbarToggle<CR>
 "nmap <F7> :NERDTreeToggle<CR>
+nmap <F5> :Make<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """" Special rules for Tex and markdown
@@ -312,9 +317,16 @@ function! TexRules()
     set linebreak
     colorscheme github
     set spell
+    set nolist
 endfunc
 autocmd FileType tex call TexRules()
 autocmd FileType markdown call TexRules()
+
+" automatically compile scala on write
+"autocmd bufWritePost *.scala make
+" make using vim-dispatch in the background
+autocmd bufWritePost *.scala Make!
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
