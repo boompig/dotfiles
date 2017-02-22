@@ -17,15 +17,16 @@ call plug#begin('~/.vim/plugged')
 " language-specific stuff
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
-Plug 'digitaltoad/vim-jade'
-Plug 'fatih/vim-go'
-Plug 'petRUShka/vim-opencl'
+"Plug 'digitaltoad/vim-pug'
+Plug 'mustache/vim-mustache-handlebars'
+"Plug 'fatih/vim-go'
+"Plug 'petRUShka/vim-opencl'
 " disabled because it stops highlighting print functions
-"Plug 'hdima/python-syntax.git'
+Plug 'hdima/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 " syntax folding for Python
-Plug 'tmhedberg/SimpylFold'
+"Plug 'tmhedberg/SimpylFold'
 " Plug 'lervag/vimtex'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
@@ -36,11 +37,11 @@ Plug 'derekwyatt/vim-scala'
 " Terraform
 Plug 'hashivim/vim-terraform'
 " Gradle (Java build tool)
-Plug 'https://github.com/tfnico/vim-gradle.git'
+Plug 'tfnico/vim-gradle'
 " HTML5
 Plug 'othree/html5.vim'
 " CSS3
-Plug 'hail2u/vim-css3-syntax'
+"Plug 'hail2u/vim-css3-syntax'
 
 " actual plugins
 Plug 'rking/ag.vim'
@@ -59,7 +60,7 @@ Plug 'scrooloose/nerdcommenter'
 " better star search
 Plug 'nelstrom/vim-visual-star-search'
 " better file browser. disabled because slow to start up
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " better file finder
 Plug 'kien/ctrlp.vim'
 " autocomplete
@@ -78,7 +79,7 @@ Plug 'vim-scripts/closetag.vim'
 " faster folding
 Plug 'Konfekt/FastFold'
 " import sorting for Python
-Plug 'fisadev/vim-isort'
+"Plug 'fisadev/vim-isort'
 " allows for async make
 Plug 'tpope/vim-dispatch'
 
@@ -113,7 +114,6 @@ let g:jsx_ext_required = 1
 
 filetype plugin indent on
 syntax on
-set background=dark
 set t_Co=256
 
 """""""""""""""""""""" syntax inspector """""""""""""""""""""""""""""""
@@ -186,7 +186,17 @@ set autoread
 "set foldmethod=syntax
 set nofoldenable
 
-colorscheme molokai
+if has("gui_running")
+    " set GUI options
+    set guifont=Monaco:h13
+    " hide toolbar in gVim
+    set guioptions-=T
+    colorscheme solarized
+    set background=light
+else
+    colorscheme molotov
+    set background=dark
+endif
 
 " enable status line always
 set laststatus=2
@@ -295,9 +305,6 @@ nmap <Left> <nop>
 nmap <Right> <nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" hide toolbar in gVim
-set guioptions-=T
-
 """" Show current syntax group """"""""""""""""""""""""
 map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -306,7 +313,7 @@ map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>
 
 """"""""""""""""""""" F-key mappings """"""""""""""""""
 nmap <F8> :TagbarToggle<CR>
-"nmap <F7> :NERDTreeToggle<CR>
+nmap <F7> :NERDTreeToggle<CR>
 nmap <F5> :Make<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -319,13 +326,13 @@ function! TexRules()
     set spell
     set nolist
 endfunc
-autocmd FileType tex call TexRules()
-autocmd FileType markdown call TexRules()
+"autocmd FileType tex call TexRules()
+"autocmd FileType markdown call TexRules()
 
 " automatically compile scala on write
 "autocmd bufWritePost *.scala make
 " make using vim-dispatch in the background
-autocmd bufWritePost *.scala Make!
+"autocmd bufWritePost *.scala Make!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -351,3 +358,9 @@ let g:ctrlp_custom_ignore = {
 """"""""""""" vim-json options """"""""""""""""""
 let g:vim_json_syntax_conceal = 0
 """"""""""""" vim-json options """"""""""""""""""
+
+" crontab options
+if $VIM_CRONTAB == "true"
+    set nobackup
+    set nowritebackup
+endif
