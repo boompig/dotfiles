@@ -9,6 +9,7 @@ promptinit
 
 # no history duplicates
 setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=1000
