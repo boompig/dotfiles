@@ -54,7 +54,7 @@ if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
     source ${GIT_PROMPT}
     export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff}\n${BPurple}\$${ColorOff} "
 else
-    export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${BPurple}\n \$${ColorOff} "
+    export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${BPurple}\n\$${ColorOff} "
 fi
 
 function prepend_to_path {
