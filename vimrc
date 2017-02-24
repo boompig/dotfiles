@@ -22,7 +22,7 @@ Plug 'mustache/vim-mustache-handlebars'
 "Plug 'fatih/vim-go'
 "Plug 'petRUShka/vim-opencl'
 " disabled because it stops highlighting print functions
-Plug 'hdima/python-syntax'
+"Plug 'hdima/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 " syntax folding for Python
@@ -86,21 +86,45 @@ Plug 'tpope/vim-dispatch'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if has("gui_running")
+    " set GUI options
+    set guifont=Monaco:h13
+    " hide toolbar in gVim
+    set guioptions-=T
+    colorscheme solarized
+    set background=light
+else
+    "let g:molotov = 1
+    colorscheme molokai
+    set background=dark
+endif
+
+""""""""""""""""""" lightline config """"""""""""""""""""""""""""
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+    \}
+" first part changes the appearance of INSERT etc
+" second part adds lock to read-only part of statusline
+" 3-4 makes pretty separators
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+      "\ 'component': {
+      "\   'readonly': '%{&readonly?"⭤":""}',
+      "\ },
+      "\ 'separator': { 'left': '⮀', 'right': '⮂' },
+      "\ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      "\ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""" remember more """""""""""""""""""""""""""""""
+set history=1000
+set undolevels=1000
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 """"""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""" airline  """"""""""""""""""""""""""""""""""""
-"" use pretty symbols
-"let g:airline_powerline_fonts = 1
-"" disable a few extensions
-"let g:airline#extensions#whitespace#enabled = 0
-"let g:airline#extensions#branch#enabled = 1
-"let g:airline_section_y = ' '
-"let g:airline_section_z = ' '
-"" make tabs pretty
-"let g:airline#extensions#tabline#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Language-Specific """""""""""""""""""""""""""
@@ -185,18 +209,6 @@ set autoread
 " allow for folding, but open everything by default
 "set foldmethod=syntax
 set nofoldenable
-
-if has("gui_running")
-    " set GUI options
-    set guifont=Monaco:h13
-    " hide toolbar in gVim
-    set guioptions-=T
-    colorscheme solarized
-    set background=light
-else
-    colorscheme molotov
-    set background=dark
-endif
 
 " enable status line always
 set laststatus=2
@@ -316,25 +328,6 @@ nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
 nmap <F5> :Make<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""" Special rules for Tex and markdown
-function! TexRules()
-    set background=light
-    set wrap
-    set linebreak
-    colorscheme github
-    set spell
-    set nolist
-endfunc
-"autocmd FileType tex call TexRules()
-"autocmd FileType markdown call TexRules()
-
-" automatically compile scala on write
-"autocmd bufWritePost *.scala make
-" make using vim-dispatch in the background
-"autocmd bufWritePost *.scala Make!
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
 hi TabLineFill ctermfg=8 ctermbg=Black
