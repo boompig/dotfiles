@@ -100,20 +100,21 @@ else
 endif
 
 """"""""""""""""""" lightline config """"""""""""""""""""""""""""
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-    \}
+" basic: just includes colorscheme
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+    "\}
 " first part changes the appearance of INSERT etc
 " second part adds lock to read-only part of statusline
 " 3-4 makes pretty separators
-"let g:lightline = {
-      "\ 'colorscheme': 'wombat',
-      "\ 'component': {
-      "\   'readonly': '%{&readonly?"⭤":""}',
-      "\ },
-      "\ 'separator': { 'left': '⮀', 'right': '⮂' },
-      "\ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      "\ }
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" remember more """""""""""""""""""""""""""""""
