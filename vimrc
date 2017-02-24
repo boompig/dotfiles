@@ -183,6 +183,8 @@ set showmatch
 
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 set cindent
 " backslash is harder to reach
