@@ -316,19 +316,25 @@ nmap <Up> <nop>
 nmap <Down> <nop>
 nmap <Left> <nop>
 nmap <Right> <nop>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" Show current syntax group """"""""""""""""""""""""
+"""" Show current syntax group """""""""""""""""""""""
 map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""" F-key mappings """"""""""""""""""
+""""""""""""""""""""" F-key mappings """""""""""""""""
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
 nmap <F5> :Make<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""" NERDTree config """""""""""""""""""
+" NERDTree will cd when you cd
+let NERDTreeChDirMode=2
+let NERDTreeIgnore = ['\.pyc$']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
 hi TabLineFill ctermfg=8 ctermbg=Black
