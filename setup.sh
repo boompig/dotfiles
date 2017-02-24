@@ -30,7 +30,13 @@ configure_git() {
     git config --global user.name "Daniel Kats"
     git config --global user.email "boompigdev@gmail.com"
     git config --global core.editor "$(which vim)"
-    git config --global push.default simple
+    local git_version=$(git --version | sed 's/git version //')
+    if [ $(echo "$git_version" | egrep '^2') ]; then
+        echo "Performing git v2+ configuration"
+        git config --global push.default simple
+    else
+        echo "Git version is $git_version < 2, ignoring git 2+ configuration"
+    fi
 }
 
 install_bashrc() {
@@ -127,13 +133,14 @@ install_vimrc() {
 }
 
 install_vim_plugins() {
-    if [ -d "$HOME/.vim/bundle/Vundle.vim" ]
+    if [ -d "$HOME/.vim/autoload/plug.vim" ]
     then
         echo "Warning: Vundle is already installed">&2
     else
-        git clone "https://github.com/gmarik/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
+		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
-    vim +PluginInstall +qa
+    vim +PlugInstall +qa
 }
 
 install_my_vim_colorscheme() {

@@ -9,6 +9,7 @@ promptinit
 
 # no history duplicates
 setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=1000
@@ -39,9 +40,9 @@ fi
 
 if [ $USER = "root" ]
 then
-    PROMPT="%{$fg_bold[red]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}$ %{$reset_color%}"
+    PROMPT="%{$fg[red]%}%n@%{$fg[green]%}%m %{$fg[yellow]%}%~$git_prompt%{$fg[magenta]%}$ %{$reset_color%}"
 else
-    PROMPT="%{$fg_bold[blue]%}%n@%{$fg_bold[green]%}%m %{$fg_bold[yellow]%}%~$git_prompt%{$fg_bold[magenta]%}
+    PROMPT="%{$fg[blue]%}%n@%{$fg[green]%}%m %{$fg[yellow]%}%~$git_prompt%{$fg[magenta]%}
 $ %{$reset_color%}"
 fi
 
@@ -130,9 +131,13 @@ if [ -d "/usr/local/heroku/bin" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
-# on Mac, make sure using homebrew version of executables
-if [ -d "/usr/local/bin" ]; then
+is_mac=$(uname -a | grep -o Darwin >/dev/null && echo 1 || echo 0)
+
+# Mac only: homebrew settings
+if [ $is_mac ] && [ -d "/usr/local/bin" ]; then
+	# make sure we are using homebrew version of executables
     export PATH="/usr/local/bin:$PATH"
+	export HOMEBREW_NO_ANALYTICS=1
 fi
 
 if [ -e "$HOME/.printer-prefs" ]; then
@@ -170,7 +175,7 @@ export TERM='xterm-256color'
 function git_config {
     git config --global user.name "Daniel Kats"
     git config --global user.email "dbkats@cs.toronto.edu"
-    git config --global core.editor `which vim`
+	git config --global core.editor $(which vim)
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -180,4 +185,11 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey "^[[3~" delete-char
 
-export PATH="$PATH:/usr/local/stockfish/bin"
+stockfish_path="/usr/local/stockfish/bin"
+if [ -d "$stockfish_path" ]; then
+    export PATH="$PATH:$stockfish_path"
+fi
+
+# set vim as the editor
+export VISUAL=$(which vim)
+export EDITOR=$(which vim)

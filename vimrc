@@ -11,81 +11,121 @@ filetype plugin indent off
 """""""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""" Vundle """"""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+""""""""""""""""""""""" vim-plug """"""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
 " language-specific stuff
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'elzr/vim-json'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'fatih/vim-go'
-Plugin 'petRUShka/vim-opencl'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'elzr/vim-json'
+"Plug 'digitaltoad/vim-pug'
+Plug 'mustache/vim-mustache-handlebars'
+"Plug 'fatih/vim-go'
+"Plug 'petRUShka/vim-opencl'
 " disabled because it stops highlighting print functions
-"Plugin 'hdima/python-syntax.git'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx.git'
+"Plug 'hdima/python-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 " syntax folding for Python
-Plugin 'tmhedberg/SimpylFold'
-" Plugin 'lervag/vimtex'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plug 'tmhedberg/SimpylFold'
+" Plug 'lervag/vimtex'
+Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-"Plugin 'davidhalter/jedi'
-Plugin 'Shutnik/jshint2.vim'
+Plug 'davidhalter/jedi'
+Plug 'Shutnik/jshint2.vim'
 " Scala
-Plugin 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
+" Terraform
+Plug 'hashivim/vim-terraform'
+" Gradle (Java build tool)
+Plug 'tfnico/vim-gradle'
+" HTML5
+Plug 'othree/html5.vim'
+" CSS3
+"Plug 'hail2u/vim-css3-syntax'
 
 " actual plugins
-Plugin 'rking/ag.vim.git'
+Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
+" Python tooling
+Plug 'davidhalter/jedi-vim'
 " good vim defaults
-Plugin 'tpope/vim-sensible'
+Plug 'tpope/vim-sensible'
 " extended % matching to HTML
-Plugin 'tmhedberg/matchit'
+Plug 'tmhedberg/matchit'
 " easy comment/uncomment
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " easily align text into columns
-"Plugin 'godlygeek/tabular'
+"Plug 'godlygeek/tabular'
 " better star search
-Plugin 'nelstrom/vim-visual-star-search'
-" better file browser
-Plugin 'scrooloose/nerdtree'
+Plug 'nelstrom/vim-visual-star-search'
+" better file browser. disabled because slow to start up
+Plug 'scrooloose/nerdtree'
 " better file finder
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " autocomplete
-Plugin 'Shougo/neocomplete.vim'
-" this plugin only exists to show current branch info in statusline
-Plugin 'tpope/vim-fugitive'
+Plug 'Shougo/neocomplete.vim'
+" this plugin only exists to show current branch info in statusline. disabled
+" because slow to start up
+"Plug 'tpope/vim-fugitive'
 " this is the statusline plugin
-Plugin 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 " display buffers as tabs
-Plugin 'ap/vim-buftabline'
+Plug 'ap/vim-buftabline'
 " shortcuts for fast switching between buffers
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 " autoclose HTML
-Plugin 'vim-scripts/closetag.vim'
+Plug 'vim-scripts/closetag.vim'
 " faster folding
-Plugin 'Konfekt/FastFold'
+Plug 'Konfekt/FastFold'
+" import sorting for Python
+"Plug 'fisadev/vim-isort'
+" allows for async make
+Plug 'tpope/vim-dispatch'
 
-call vundle#end()
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has("gui_running")
+    " set GUI options
+    set guifont=Monaco:h13
+    " hide toolbar in gVim
+    set guioptions-=T
+    colorscheme solarized
+    set background=light
+else
+    "let g:molotov = 1
+    colorscheme molokai
+    set background=dark
+endif
+
+""""""""""""""""""" lightline config """"""""""""""""""""""""""""
+" basic: just includes colorscheme
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+    "\}
+" first part changes the appearance of INSERT etc
+" second part adds lock to read-only part of statusline
+" 3-4 makes pretty separators
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""" remember more """""""""""""""""""""""""""""""
+set history=1000
+set undolevels=1000
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""" airline  """"""""""""""""""""""""""""""""""""
-"" use pretty symbols
-"let g:airline_powerline_fonts = 1
-"" disable a few extensions
-"let g:airline#extensions#whitespace#enabled = 0
-"let g:airline#extensions#branch#enabled = 1
-"let g:airline_section_y = ' '
-"let g:airline_section_z = ' '
-"" make tabs pretty
-"let g:airline#extensions#tabline#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Language-Specific """""""""""""""""""""""""""
@@ -99,7 +139,6 @@ let g:jsx_ext_required = 1
 
 filetype plugin indent on
 syntax on
-set background=dark
 set t_Co=256
 
 """""""""""""""""""""" syntax inspector """""""""""""""""""""""""""""""
@@ -139,11 +178,13 @@ set showmatch
 
 " show whitespace
 "set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set nolist
+"set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+"set nolist
 
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 set cindent
 " backslash is harder to reach
@@ -171,8 +212,6 @@ set autoread
 " allow for folding, but open everything by default
 "set foldmethod=syntax
 set nofoldenable
-
-colorscheme molokai
 
 " enable status line always
 set laststatus=2
@@ -279,32 +318,24 @@ nmap <Up> <nop>
 nmap <Down> <nop>
 nmap <Left> <nop>
 nmap <Right> <nop>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" hide toolbar in gVim
-set guioptions-=T
-
-"""" Show current syntax group """"""""""""""""""""""""
+"""" Show current syntax group """""""""""""""""""""""
 map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""" F-key mappings """"""""""""""""""
+""""""""""""""""""""" F-key mappings """""""""""""""""
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F5> :Make<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" Special rules for Tex and markdown
-function! TexRules()
-    set background=light
-    set wrap
-    set linebreak
-    colorscheme github
-    set spell
-endfunc
-autocmd FileType tex call TexRules()
-autocmd FileType markdown call TexRules()
+"""""""""""""""""" NERDTree config """""""""""""""""""
+" NERDTree will cd when you cd
+let NERDTreeChDirMode=2
+let NERDTreeIgnore = ['\.pyc$']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
@@ -322,10 +353,16 @@ set hidden
 
 """"""""""""" Ctrl-p options """"""""""""""""""""
 let g:ctrlp_custom_ignore = {
-            \ 'file': '\v\.(pyc)'
+            \ 'file': '\v\.(pyc|class)'
             \}
 """"""""""""" Ctrl-p options """"""""""""""""""""
 
 """"""""""""" vim-json options """"""""""""""""""
 let g:vim_json_syntax_conceal = 0
 """"""""""""" vim-json options """"""""""""""""""
+
+" crontab options
+if $VIM_CRONTAB == "true"
+    set nobackup
+    set nowritebackup
+endif

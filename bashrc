@@ -1,6 +1,3 @@
-# Written by Daniel Kats
-# May 27, 2014
-
 ######## GLOBAL VARS #########
 LS_COLORS_FILE="${HOME}/dotfiles/config/dircolors.ansi-dark"
 GIT_COMPLETE="${HOME}/dotfiles/config/git-completion.bash"
@@ -11,36 +8,22 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 if [ -e /etc/lsb-release ]; then
-	alias ls='ls --color=auto'
+    alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias git-grep='git-grep --color=auto'
 else
-	# on Mac
-	alias ls='ls -G'
+    # on Mac
+    alias ls='ls -G'
 fi
 
 # on linux, set alias for open command
 uname -a | grep -io linux>/dev/null && alias open='xdg-open'
 
-# use vim bindings for bash
-set -o vi
-
-
 alias ll='ls -l'
-
-if [ -e /Applications/Postgres.App ]; then
-    #alias psql='/Applications/Postgres.app/Contents//Versions/9.3/bin/psql'
-    PATH="/Applications/Postgres.app/Contents//Versions/9.3/bin:$PATH"
-fi
 
 # Yelp-specific aliases
 if [ -e ~/.yelp_bash_alias ]; then
-	source ~/.yelp_bash_alias
-fi
-
-# javascript stuff
-if [ -d ~/node_modules ] && [ -d ~/node_modules/jshint ]; then
-    PATH="$HOME/node_modules/jshint/bin:$PATH"
+    source ~/.yelp_bash_alias
 fi
 
 ##-ANSI-COLOR-CODES-##
@@ -63,35 +46,78 @@ BRed='\[\033[1;31m\]'
 BPurple='\[\033[1;35m\]'
 BGreen='\[\033[1;32m\]'
 BYellow='\[\033[1;33m\]'
+BBlue='\[\033[1;34m\]'
 
 # Enable git prompt
 if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
-	source ${GIT_COMPLETE}
-	source ${GIT_PROMPT}
-	export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff} ${BPurple}\$${ColorOff} "
+    source ${GIT_COMPLETE}
+    source ${GIT_PROMPT}
+    export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff}\n${BPurple}\$${ColorOff} "
 else
-	export PS1="${BGreen}\h${ColorOff} ${BYellow}[ \w ]${ColorOff} ${BPurple}\$${ColorOff} "
+    export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${BPurple}\n\$${ColorOff} "
 fi
 
-PATH="/usr/local/bin:${PATH}"
+function prepend_to_path {
+    local dir="$1"
+    if [ ! -d "$dir" ]; then
+        #echo "[WARNING] $dir does not exist"
+        local x=1
+    else
+        if [ ! $(echo $PATH | grep $dir) ]; then
+            #echo "[INFO] Prepending $dir to PATH..."
+            export PATH="$dir:$PATH"
+        else
+            #echo "[WARNING] $dir already on path..."
+            local x=1
+        fi
+    fi
+}
+
+function configure_git {
+    git config --global core.ui true
+    git config --global core.editor vim
+}
+
+function append_to_path {
+    local dir="$1"
+    if [ ! -d "$dir" ]; then
+        #echo "[WARNING] $dir does not exist"
+        local x=1
+    else
+        if [ ! $(echo $PATH | grep $dir) ]; then
+            #echo "[INFO] Appending $dir to PATH..."
+            export PATH="$PATH:$dir"
+        else
+            #echo "[WARNING] $dir already on path..."
+            local x=1
+        fi
+    fi
+}
+
+# make sure to read /usr/local/bin before anything else in PATH (for Homebrew on Mac)
+prepend_to_path "/usr/local/bin"
 
 # set the terminal to be 256-color compatible
 export TERM="xterm-256color"
 
-### Added for the Heroku Toolbelt
-if [ -d /usr/local/heroku ]; then
-    export PATH="/usr/local/heroku/bin:$PATH"
-fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-# set vim as default editor
-git config --global core.ui true
-git config --global core.editor vim
+configure_git
 
 if [ -f ~/.git-completion.sh ]; then
     source ~/.git-completion.sh
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+### Added by the Heroku Toolbelt
+append_to_path "/usr/local/heroku/bin"
+
+# Add RVM to PATH for scripting
+append_to_path "$HOME/.rvm/bin"
+
+# add Spark to PATH
+append_to_path "/opt/spark-2.0.1-bin-hadoop2.6/bin"
+
+# javascript stuff
+append_to_path "$HOME/node_modules/jshint/bin"
+
+# postgres on Mac
+append_to_path "/Applications/Postgres.app/Contents//Versions/9.3/bin"
+
