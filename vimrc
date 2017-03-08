@@ -68,7 +68,11 @@ Plug 'scrooloose/nerdtree'
 " better file finder
 Plug 'kien/ctrlp.vim'
 " autocomplete
-Plug 'Shougo/neocomplete.vim'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+else
+    Plug 'Shougo/neocomplete.vim'
+endif
 " this plugin only exists to show current branch info in statusline. disabled
 " because slow to start up
 "Plug 'tpope/vim-fugitive'
