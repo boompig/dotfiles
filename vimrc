@@ -42,6 +42,10 @@ Plug 'tfnico/vim-gradle'
 Plug 'othree/html5.vim'
 " CSS3
 "Plug 'hail2u/vim-css3-syntax'
+" Markdown
+" screws with indent and doesn't really provide any functionality
+"Plug 'plasticboy/vim-markdown'
+Plug 'nelstrom/vim-markdown-folding'
 
 " actual plugins
 Plug 'rking/ag.vim'
@@ -93,10 +97,20 @@ if has("gui_running")
     set guioptions-=T
     colorscheme solarized
     set background=light
+    let g:solarized_termcolors=256
 else
     "let g:molotov = 1
-    colorscheme molokai
+
     set background=dark
+    colorscheme molokai
+
+    " enables solarized theme in terminal
+    let g:solarized_termcolors=256
+
+    " pretty colours for tabline only in non-GUI mode
+    highlight TabLineFill ctermfg=8 ctermbg=Black
+    highlight TabLine ctermfg=LightGrey ctermbg=8
+    highlight TabLineSel ctermfg=White ctermbg=4
 endif
 
 """"""""""""""""""" lightline config """"""""""""""""""""""""""""
@@ -117,6 +131,22 @@ let g:lightline = {
       \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""" buftabline config """""""""""""""""""""""""""
+" show vim-internal buffer number for faster buffer switching
+let g:buftabline_numbers = 1
+" allow Mac to switch between buffers using command + #
+nmap <D-1> <Plug>BufTabLine.Go(1)
+nmap <D-2> <Plug>BufTabLine.Go(2)
+nmap <D-3> <Plug>BufTabLine.Go(3)
+nmap <D-4> <Plug>BufTabLine.Go(4)
+nmap <D-5> <Plug>BufTabLine.Go(5)
+nmap <D-6> <Plug>BufTabLine.Go(6)
+nmap <D-7> <Plug>BufTabLine.Go(7)
+nmap <D-8> <Plug>BufTabLine.Go(8)
+nmap <D-9> <Plug>BufTabLine.Go(9)
+nmap <D-0> <Plug>BufTabLine.Go(10)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """"""""""""""""""" remember more """""""""""""""""""""""""""""""
 set history=1000
 set undolevels=1000
@@ -133,6 +163,8 @@ let g:neocomplete#enable_at_startup = 1
 set runtimepath+=$GOROOT/misc/vim
 " all *.md files refer to markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let g:markdown_syntax_conceal = 0
 " allow .js files to have React-style highlighting
 let g:jsx_ext_required = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,12 +368,10 @@ nmap <F5> :Make<CR>
 " NERDTree will cd when you cd
 let NERDTreeChDirMode=2
 let NERDTreeIgnore = ['\.pyc$']
+set autochdir
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
-hi TabLineFill ctermfg=8 ctermbg=Black
-hi TabLine ctermfg=LightGrey ctermbg=8
-hi TabLineSel ctermfg=White ctermbg=4
 " always show tab bar
 set showtabline=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
