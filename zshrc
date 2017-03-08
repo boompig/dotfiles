@@ -166,11 +166,16 @@ export TERM='xterm-256color'
     #exec tmux
 #fi
 
+function command_exists {
+    hash "$1" 2>/dev/null
+}
+VIM_PATH="$(which vim)"
+
 # git config
 function git_config {
     git config --global user.name "Daniel Kats"
     git config --global user.email "dbkats@cs.toronto.edu"
-	git config --global core.editor $(which vim)
+	git config --global core.editor "$VIM_PATH"
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -181,10 +186,10 @@ bindkey '^[[1;5D' backward-word
 bindkey "^[[3~" delete-char
 
 stockfish_path="/usr/local/stockfish/bin"
-if [ -d "$stockfish_path" ]; then
+if [ -d "$stockfish_path" ] && ! command_exists stockfish; then
     export PATH="$PATH:$stockfish_path"
 fi
 
 # set vim as the editor
-export VISUAL=$(which vim)
-export EDITOR=$(which vim)
+export VISUAL="$VIM_PATH"
+export EDITOR="$VIM_PATH"
