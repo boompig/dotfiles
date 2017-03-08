@@ -38,8 +38,7 @@ else
     git_prompt=" $RPROMPT"
 fi
 
-if [ $USER = "root" ]
-then
+if [ "$USER" = "root" ]; then
     PROMPT="%{$fg[red]%}%n@%{$fg[green]%}%m %{$fg[yellow]%}%~$git_prompt%{$fg[magenta]%}$ %{$reset_color%}"
 else
     PROMPT="%{$fg[blue]%}%n@%{$fg[green]%}%m %{$fg[yellow]%}%~$git_prompt%{$fg[magenta]%}
@@ -66,9 +65,8 @@ zle-keymap-select () {
 zle -N zle-keymap-select
 
 ################################## aliases and PATH ##################################
-uname -a | grep -o Linux>/dev/null
-if [ $? -eq 0 ]
-then
+is_linux=$(uname -a | grep -o Linux>/dev/null && echo 1 || echo 0)
+if [ "$is_linux" -eq 0 ]; then
     alias ls='ls --color=auto'
 else
     alias ls='ls -G'
@@ -115,9 +113,9 @@ if [ -x "$SUBLIME_PATH" ]; then
     alias sublime="$SUBLIME_PATH"
 fi
 
-local psql_app_path='/Applications/Postgres.app'
+psql_app_path='/Applications/Postgres.app'
 if [ -d "$psql_app_path" ]; then
-    local psql_bin_path=$(find "$psql_app_path/Contents/Versions" -name 'bin')
+    psql_bin_path=$(find "$psql_app_path/Contents/Versions" -name 'bin')
     PATH="$PATH:$psql_bin_path"
 fi
 
@@ -134,7 +132,7 @@ fi
 is_mac=$(uname -a | grep -o Darwin >/dev/null && echo 1 || echo 0)
 
 # Mac only: homebrew settings
-if [ $is_mac ] && [ -d "/usr/local/bin" ]; then
+if [ "$is_mac" ] && [ -d "/usr/local/bin" ]; then
 	# make sure we are using homebrew version of executables
     export PATH="/usr/local/bin:$PATH"
 	export HOMEBREW_NO_ANALYTICS=1
@@ -145,11 +143,8 @@ if [ -e "$HOME/.printer-prefs" ]; then
 fi
 
 # on Macs, make sure gcc is homebrew version
-uname -a | grep -o Linux>/dev/null
-if [ $? -ne 0 ]; then
-    if [ -e "/usr/local/bin/gcc-4.9" ]; then
-        alias gcc='/usr/local/bin/gcc-4.9'
-    fi
+if [ "$is_mac" ] && [ -e "/usr/local/bin/gcc-4.9" ]; then
+    alias gcc='/usr/local/bin/gcc-4.9'
 fi
 
 MAC_CMAKE_PATH="/Applications/CMake.app/Contents/bin"
@@ -184,6 +179,11 @@ bindkey -e
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey "^[[3~" delete-char
+
+stockfish_path="/usr/local/stockfish/bin"
+if [ -d "$stockfish_path" ]; then
+    export PATH="$PATH:$stockfish_path"
+fi
 
 # set vim as the editor
 export VISUAL=$(which vim)

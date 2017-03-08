@@ -39,6 +39,19 @@ configure_git() {
     fi
 }
 
+configure_vim_fonts() {
+    local powerline_fonts_dir='powerline-fonts'
+    if [ ! -d 'powerline-fonts' ]; then
+        git clone 'https://github.com/powerline/fonts.git' "$powerline_fonts_dir"
+        echo "Installing powerline patched fonts..."
+        pushd "$powerline_fonts_dir" >/dev/null
+        ./install.sh
+        popd >/dev/null
+    else
+        echo "Warning: powerline fonts are already installed"
+    fi
+}
+
 install_bashrc() {
     local bashrc="$HOME/.bashrc"
     if [ -f "$bashrc" ]
@@ -133,8 +146,7 @@ install_vimrc() {
 }
 
 install_vim_plugins() {
-    if [ -d "$HOME/.vim/autoload/plug.vim" ]
-    then
+    if [ -e "$HOME/.vim/autoload/plug.vim" ]; then
         echo "Warning: Vundle is already installed">&2
     else
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -174,4 +186,5 @@ install_vim_colorscheme \
 install_vimrc
 install_my_vim_colorscheme
 install_vim_plugins
+configure_vim_fonts
 
