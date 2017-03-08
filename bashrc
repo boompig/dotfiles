@@ -49,22 +49,25 @@ BYellow='\[\033[1;33m\]'
 BBlue='\[\033[1;34m\]'
 
 # Enable git prompt
-if [ -f ${GIT_COMPLETE} ] && [ -f ${GIT_PROMPT} ]; then
-    source ${GIT_COMPLETE}
-    source ${GIT_PROMPT}
+if [ -f "${GIT_COMPLETE}" ] && [ -f "${GIT_PROMPT}" ]; then
+    source "${GIT_COMPLETE}"
+    source "${GIT_PROMPT}"
     export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${Cyan}"'$(__git_ps1 "(%s)")'"${ColorOff}\n${BPurple}\$${ColorOff} "
 else
     export PS1="${BBlue}\u@${ColorOff}${BGreen}\h${ColorOff} ${BYellow}\w${ColorOff} ${BPurple}\n\$${ColorOff} "
 fi
 
+function path_contains {
+    echo "$PATH" | grep -q "$1"
+}
+
 function prepend_to_path {
     local dir="$1"
     if [ ! -d "$dir" ]; then
-        #echo "[WARNING] $dir does not exist"
+        echo "[WARNING] $dir does not exist">&2
         local x=1
     else
-        if [ ! $(echo $PATH | grep $dir) ]; then
-            #echo "[INFO] Prepending $dir to PATH..."
+        if ! path_contains "$dir"; then
             export PATH="$dir:$PATH"
         else
             #echo "[WARNING] $dir already on path..."
@@ -81,16 +84,18 @@ function configure_git {
 function append_to_path {
     local dir="$1"
     if [ ! -d "$dir" ]; then
-        #echo "[WARNING] $dir does not exist"
-        local x=1
+        echo "[WARNING] $dir does not exist">&2
     else
-        if [ ! $(echo $PATH | grep $dir) ]; then
-            #echo "[INFO] Appending $dir to PATH..."
+        if ! path_contains "$dir"; then
             export PATH="$PATH:$dir"
-        else
-            #echo "[WARNING] $dir already on path..."
-            local x=1
         fi
+    fi
+}
+
+function append_to_path_if_exists {
+    local dir="$1"
+    if [ -d "$dir" ]; then
+        append_to_path "$dir"
     fi
 }
 
@@ -107,17 +112,17 @@ if [ -f ~/.git-completion.sh ]; then
 fi
 
 ### Added by the Heroku Toolbelt
-append_to_path "/usr/local/heroku/bin"
+append_to_path_if_exists "/usr/local/heroku/bin"
 
 # Add RVM to PATH for scripting
-append_to_path "$HOME/.rvm/bin"
+append_to_path_if_exists "$HOME/.rvm/bin"
 
 # add Spark to PATH
-append_to_path "/opt/spark-2.0.1-bin-hadoop2.6/bin"
+append_to_path_if_exists "/opt/spark-2.0.1-bin-hadoop2.6/bin"
 
 # javascript stuff
-append_to_path "$HOME/node_modules/jshint/bin"
+append_to_path_if_exists "$HOME/node_modules/jshint/bin"
 
 # postgres on Mac
-append_to_path "/Applications/Postgres.app/Contents//Versions/9.3/bin"
+append_to_path_if_exists "/Applications/Postgres.app/Contents//Versions/9.3/bin"
 
