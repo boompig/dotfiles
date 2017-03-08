@@ -65,8 +65,8 @@ zle-keymap-select () {
 zle -N zle-keymap-select
 
 ################################## aliases and PATH ##################################
-is_linux=$(uname -a | grep -o Linux>/dev/null && echo 1 || echo 0)
-if [ "$is_linux" -eq 0 ]; then
+is_linux=$(uname -a | grep -q 'Linux' && echo 1 || echo 0)
+if [ "$is_linux" -eq 1 ]; then
     alias ls='ls --color=auto'
 else
     alias ls='ls -G'
@@ -129,10 +129,10 @@ if [ -d "/usr/local/heroku/bin" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
-is_mac=$(uname -a | grep -o Darwin >/dev/null && echo 1 || echo 0)
+is_mac=$(uname -a | grep -q Darwin && echo 1 || echo 0)
 
 # Mac only: homebrew settings
-if [ "$is_mac" ] && [ -d "/usr/local/bin" ]; then
+if [ "$is_mac" -eq 1 ] && [ -d "/usr/local/bin" ]; then
 	# make sure we are using homebrew version of executables
     export PATH="/usr/local/bin:$PATH"
 	export HOMEBREW_NO_ANALYTICS=1
@@ -143,7 +143,7 @@ if [ -e "$HOME/.printer-prefs" ]; then
 fi
 
 # on Macs, make sure gcc is homebrew version
-if [ "$is_mac" ] && [ -e "/usr/local/bin/gcc-4.9" ]; then
+if [ "$is_mac" -eq 1 ] && [ -e "/usr/local/bin/gcc-4.9" ]; then
     alias gcc='/usr/local/bin/gcc-4.9'
 fi
 
