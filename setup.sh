@@ -3,24 +3,27 @@
 # Written by Daniel Kats
 # This script will automatically setup the dotfiles to 'just work'
 
-if [ $SHELL = "/bin/bash" ]; then
+if [ "$SHELL" = "/bin/bash" ]; then
     HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 else
     HERE="$(pwd)"
 fi
 
+# portable way to check if a command exists
+command_exists() {
+    hash "$1" 2>/dev/null
+}
+
 
 git_or_exit() {
-    which git>/dev/null
-    if [ $? -ne 0 ]; then
+    if ! command_exists git; then
         echo "Error: git not installed, quitting">&2
         exit 1
     fi
 }
 
 vim_or_exit() {
-    which vim>/dev/null
-    if [ $? -ne 0 ]; then
+    if ! command_exists vim; then
         echo "Error: vim not installed, quitting">&2
         exit 1
     fi
@@ -30,8 +33,8 @@ configure_git() {
     git config --global user.name "Daniel Kats"
     git config --global user.email "boompigdev@gmail.com"
     git config --global core.editor "$(which vim)"
-    local git_version=$(git --version | sed 's/git version //')
-    if [ $(echo "$git_version" | egrep '^2') ]; then
+    local git_version="$(git --version | sed 's/git version //')"
+    if echo "$git_version" | egrep -q '^2'; then
         echo "Performing git v2+ configuration"
         git config --global push.default simple
     else
@@ -130,8 +133,7 @@ install_vim_colorscheme() {
 
 install_vimrc() {
     # write vimrc
-    which vim>/dev/null
-    if [ $? -eq 0 ]; then
+    if command_exists vim; then
         local vimrc="$HOME/.vimrc"
         if [ -f "$vimrc" ]; then
             echo "Warning: $vimrc already exists">&2
