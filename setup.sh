@@ -45,7 +45,7 @@ configure_git() {
 configure_vim_fonts() {
     local powerline_fonts_dir='powerline-fonts'
     if [ ! -d 'powerline-fonts' ]; then
-        git clone 'https://github.com/powerline/fonts.git' "$powerline_fonts_dir"
+        git clone --quiet 'https://github.com/powerline/fonts.git' "$powerline_fonts_dir"
         echo "Installing powerline patched fonts..."
         pushd "$powerline_fonts_dir" >/dev/null
         ./install.sh
@@ -83,7 +83,7 @@ install_zsh_syntax_highlighting() {
     then
         echo "Installing zsh syntax highlighting..."
         pushd "$HOME" >/dev/null
-        git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+        git clone --quiet "https://github.com/zsh-users/zsh-syntax-highlighting.git"
         popd >/dev/null
     else
         echo "Warning: $HOME/zsh-syntax-highlighting already installed"
@@ -123,7 +123,7 @@ install_vim_colorscheme() {
     if [ ! -d "$HOME/.vim/$directory" ]; then
         echo "Installing $name colorscheme"
         pushd "$HOME/.vim" >/dev/null
-        git clone "$repo_url"
+        git clone --quiet "$repo_url"
         cp "$directory/$path" colors/
         popd >/dev/null
     else
@@ -151,7 +151,7 @@ install_vim_plugins() {
     if [ -e "$HOME/.vim/autoload/plug.vim" ]; then
         echo "Warning: Vundle is already installed">&2
     else
-		curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+		curl --silent -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
 			"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     fi
     vim +PlugInstall +qa
@@ -160,7 +160,7 @@ install_vim_plugins() {
 download_fonts() {
     local local_dir="$HERE/source-code-pro"
     local git_url="https://github.com/adobe-fonts/source-code-pro.git"
-    git clone --branch "release" "$git_url" "$local_dir"
+    git clone --quiet --branch "release" "$git_url" "$local_dir"
     echo "[NOTE] Fonts downloaded to directory $local_dir. Please install on your own."
 }
 
