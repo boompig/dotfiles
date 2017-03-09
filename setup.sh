@@ -151,10 +151,17 @@ install_vim_plugins() {
     if [ -e "$HOME/.vim/autoload/plug.vim" ]; then
         echo "Warning: Vundle is already installed">&2
     else
-		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+			"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     fi
     vim +PlugInstall +qa
+}
+
+download_fonts() {
+    local local_dir="$HERE/source-code-pro"
+    local git_url="https://github.com/adobe-fonts/source-code-pro.git"
+    git clone --branch "release" "$git_url" "$local_dir"
+    echo "[NOTE] Fonts downloaded to directory $local_dir. Please install on your own."
 }
 
 install_my_vim_colorscheme() {
@@ -188,5 +195,6 @@ install_vim_colorscheme \
 install_vimrc
 install_my_vim_colorscheme
 install_vim_plugins
+download_fonts
 configure_vim_fonts
 
