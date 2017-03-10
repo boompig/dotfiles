@@ -1,3 +1,8 @@
+# junk files
 *.swp
 censor
+**/.DS_Store
+
+# fonts directories
 powerline-fonts
+source-code-pro
