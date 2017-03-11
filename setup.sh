@@ -9,6 +9,9 @@ else
     HERE="$(pwd)"
 fi
 
+# 1 iff it's a Mac
+is_mac=$(uname -a | grep -q Darwin && echo 1 || echo 0)
+
 # portable way to check if a command exists
 command_exists() {
     hash "$1" 2>/dev/null
@@ -177,6 +180,19 @@ install_my_vim_colorscheme() {
     fi
 }
 
+install_mac_homebrew_packages() {
+    if [ "$is_mac" -eq 1 ]; then
+        if command_exists brew; then
+            echo "[NOTE] Installing homebrew packages..."
+            bash "$HERE/mac-homebrew-packages.sh"
+            echo "[NOTE] Done installing homebrew packages"
+        else
+            echo "Error: homebrew not installed">&2
+            exit 1
+        fi
+    fi
+}
+
 git_or_exit
 vim_or_exit
 configure_git
@@ -211,3 +227,4 @@ install_vim_plugins
 download_fonts
 configure_vim_fonts
 
+install_mac_homebrew_packages
