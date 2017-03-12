@@ -10,10 +10,14 @@ promptinit
 # no history duplicates
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
+# save commands to history as soon as they are entered
+setopt INC_APPEND_HISTORY
 
 HISTFILE="$HOME/.zhistory"
-HISTSIZE=1000
-SAVEHIST=1000
+# max number of lines kept in a "session"
+HISTSIZE=10000
+# max number of lines kept in a file
+SAVEHIST=10000
 
 # git in prompt
 zstyle ':vcs_info:*' actionformats \
