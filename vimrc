@@ -32,11 +32,11 @@ Plug 'mxw/vim-jsx'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
 "Plug 'davidhalter/jedi'
-Plug 'Shutnik/jshint2.vim'
+Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 " Scala
-Plug 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 " Terraform
-Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 " Gradle (Java build tool)
 Plug 'tfnico/vim-gradle'
 " HTML5
@@ -46,18 +46,18 @@ Plug 'othree/html5.vim'
 " Markdown
 " screws with indent and doesn't really provide any functionality
 "Plug 'plasticboy/vim-markdown'
-Plug 'nelstrom/vim-markdown-folding'
+Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 
 " actual plugins
 Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Python tooling
 "Plug 'davidhalter/jedi-vim'
+" extended % matching to HTML; put this before vim-sensible
+Plug 'tmhedberg/matchit'
 " good vim defaults
 Plug 'tpope/vim-sensible'
-" extended % matching to HTML
-Plug 'tmhedberg/matchit'
 " easy comment/uncomment
 Plug 'scrooloose/nerdcommenter'
 " easily align text into columns
