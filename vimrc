@@ -15,6 +15,7 @@ filetype plugin indent off
 call plug#begin('~/.vim/plugged')
 
 " language-specific stuff
+Plug 'digitaltoad/vim-pug'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 "Plug 'digitaltoad/vim-pug'
@@ -30,7 +31,7 @@ Plug 'mxw/vim-jsx'
 " Plug 'lervag/vimtex'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-Plug 'davidhalter/jedi'
+"Plug 'davidhalter/jedi'
 Plug 'Shutnik/jshint2.vim'
 " Scala
 Plug 'derekwyatt/vim-scala'
@@ -52,7 +53,7 @@ Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
 Plug 'mattn/emmet-vim'
 " Python tooling
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 " good vim defaults
 Plug 'tpope/vim-sensible'
 " extended % matching to HTML
@@ -64,7 +65,7 @@ Plug 'scrooloose/nerdcommenter'
 " better star search
 Plug 'nelstrom/vim-visual-star-search'
 " better file browser. disabled because slow to start up
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " better file finder
 Plug 'kien/ctrlp.vim'
 " autocomplete
