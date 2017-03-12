@@ -24,7 +24,7 @@ Plug 'mustache/vim-mustache-handlebars'
 "Plug 'petRUShka/vim-opencl'
 " disabled because it stops highlighting print functions
 "Plug 'hdima/python-syntax'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 " syntax folding for Python
 "Plug 'tmhedberg/SimpylFold'
@@ -40,7 +40,7 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 " Gradle (Java build tool)
 Plug 'tfnico/vim-gradle'
 " HTML5
-Plug 'othree/html5.vim'
+Plug 'othree/html5.vim', { 'for': 'html' }
 " CSS3
 "Plug 'hail2u/vim-css3-syntax'
 " Markdown
@@ -104,10 +104,10 @@ if has("gui_running")
     set background=light
     let g:solarized_termcolors=256
 else
-    "let g:molotov = 1
+    let g:molotov = 1
 
     set background=dark
-    colorscheme molokai
+    colorscheme molotov
 
     " enables solarized theme in terminal
     let g:solarized_termcolors=256
@@ -385,6 +385,7 @@ set showtabline=2
 
 " allow buffers to be in the background
 set hidden
+set cursorline
 
 """"""""""""" Ctrl-p options """"""""""""""""""""
 let g:ctrlp_custom_ignore = {
