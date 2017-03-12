@@ -9,6 +9,9 @@ else
     HERE="$(pwd)"
 fi
 
+# 1 iff it's a Mac
+is_mac=$(uname -a | grep -q Darwin && echo 1 || echo 0)
+
 # portable way to check if a command exists
 command_exists() {
     hash "$1" 2>/dev/null
@@ -43,9 +46,9 @@ configure_git() {
 }
 
 configure_vim_fonts() {
-    local powerline_fonts_dir='powerline-fonts'
-    if [ ! -d 'powerline-fonts' ]; then
-        git clone 'https://github.com/powerline/fonts.git' "$powerline_fonts_dir"
+    local powerline_fonts_dir="$HERE/powerline-fonts"
+    if [ ! -d "$powerline_fonts_dir" ]; then
+        git clone --quiet 'https://github.com/powerline/fonts.git' "$powerline_fonts_dir"
         echo "Installing powerline patched fonts..."
         pushd "$powerline_fonts_dir" >/dev/null
         ./install.sh
@@ -83,7 +86,7 @@ install_zsh_syntax_highlighting() {
     then
         echo "Installing zsh syntax highlighting..."
         pushd "$HOME" >/dev/null
-        git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+        git clone --quiet "https://github.com/zsh-users/zsh-syntax-highlighting.git"
         popd >/dev/null
     else
         echo "Warning: $HOME/zsh-syntax-highlighting already installed"
@@ -111,7 +114,7 @@ create_vim_colorscheme_dir() {
 
 # 
 # Args:
-#   - name of colorscheme
+#   - name of colorscheme (for output only)
 #   - directory of colorscheme within vim folder (often same as colorscheme name)
 #   - git repo of colorscheme
 #   - path to relevant file within colorscheme directory
@@ -123,7 +126,7 @@ install_vim_colorscheme() {
     if [ ! -d "$HOME/.vim/$directory" ]; then
         echo "Installing $name colorscheme"
         pushd "$HOME/.vim" >/dev/null
-        git clone "$repo_url"
+        git clone --quiet "$repo_url"
         cp "$directory/$path" colors/
         popd >/dev/null
     else
@@ -148,10 +151,11 @@ install_vimrc() {
 }
 
 install_vim_plugins() {
-    if [ -e "$HOME/.vim/autoload/plug.vim" ]; then
-        echo "Warning: Vundle is already installed">&2
+    local vim_plug_dir="$HOME/.vim/autoload/plug.vim" 
+    if [ -e "$vim_plug_dir" ]; then
+        echo "Warning: vim-plug is already installed">&2
     else
-		curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+		curl --silent -fLo "$vim_plug_dir" --create-dirs \
 			"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     fi
     vim +PlugInstall +qa
@@ -160,8 +164,12 @@ install_vim_plugins() {
 download_fonts() {
     local local_dir="$HERE/source-code-pro"
     local git_url="https://github.com/adobe-fonts/source-code-pro.git"
-    git clone --branch "release" "$git_url" "$local_dir"
-    echo "[NOTE] Fonts downloaded to directory $local_dir. Please install on your own."
+    if [ ! -d "$local_dir" ]; then
+        git clone --quiet --branch "release" "$git_url" "$local_dir"
+        echo "[NOTE] Fonts downloaded to directory $local_dir. Please install on your own."
+    else
+        echo "Warning: source-code-pro font already downloaded"
+    fi
 }
 
 install_my_vim_colorscheme() {
@@ -169,6 +177,19 @@ install_my_vim_colorscheme() {
     local my_vim_color="$HERE/config/dbk_sublime.vim"
     if [ ! -e "$vim_color_dir/dbk_sublime.vim" ]; then
         cp "$my_vim_color" "$vim_color_dir"
+    fi
+}
+
+install_mac_homebrew_packages() {
+    if [ "$is_mac" -eq 1 ]; then
+        if command_exists brew; then
+            echo "[NOTE] Installing homebrew packages..."
+            bash "$HERE/mac-homebrew-packages.sh"
+            echo "[NOTE] Done installing homebrew packages"
+        else
+            echo "Error: homebrew not installed">&2
+            exit 1
+        fi
     fi
 }
 
@@ -187,14 +208,23 @@ install_vim_colorscheme \
     "molokai" \
     "https://github.com/tomasr/molokai.git" \
     "colors/molokai.vim";
+
 install_vim_colorscheme \
     "Github" \
     "vim-github-colorscheme" \
     "https://github.com/endel/vim-github-colorscheme.git" \
     "colors/github.vim";
+
+install_vim_colorscheme \
+    "Solarized" \
+    "vim-colors-solarized" \
+    "https://github.com/altercation/vim-colors-solarized.git" \
+    "colors/solarized.vim";
+
 install_vimrc
 install_my_vim_colorscheme
 install_vim_plugins
 download_fonts
 configure_vim_fonts
 
+install_mac_homebrew_packages
