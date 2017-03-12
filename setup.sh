@@ -165,7 +165,7 @@ download_fonts() {
     local local_dir="$HERE/source-code-pro"
     local git_url="https://github.com/adobe-fonts/source-code-pro.git"
     if [ ! -d "$local_dir" ]; then
-        git clone --quiet --branch "release" "$git_url" "$local_dir"
+        git clone --depth 1 --branch "release" "$git_url" "$local_dir"
         echo "[NOTE] Fonts downloaded to directory $local_dir. Please install on your own."
     else
         echo "Warning: source-code-pro font already downloaded"
