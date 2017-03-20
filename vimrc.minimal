@@ -1,0 +1,81 @@
+""""""""""""""""""""""""""""""""""""""""""""
+" minimal settings for vim:
+"   - no plugins
+"   - no custom color schemes
+"   - no gui options
+""""""""""""""""""""""""""""""""""""""""""""
+
+set background=dark
+colorscheme elflord
+
+set history=1000
+set undolevels=1000
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+syntax on
+
+" super pro remapping of vim colon to semi-colon
+nnoremap ; :
+
+" simple switch for set paste
+set pastetoggle=<F2>
+
+" show line #s
+set number
+
+" tabs are 4 spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set shiftround
+set softtabstop=4
+" show matching parens
+set showmatch
+
+set hlsearch
+set incsearch
+
+set cindent
+" backslash is harder to reach
+let mapleader=","
+
+" open tab
+" panes in right instead of left
+set splitright
+set splitbelow
+set noswapfile
+
+" if file changed outside vim, automatically load newest version
+set autoread
+" allow for folding, but open everything by default
+"set foldmethod=syntax
+set nofoldenable
+
+" enable status line always
+set laststatus=2
+
+" shortcut for faster moving between windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-Down> <C-W><C-J>
+nnoremap <C-Up> <C-W><C-K>
+nnoremap <C-Right> <C-W><C-L>
+nnoremap <C-Left> <C-W><C-H>
+
+" Disable ex mode
+nnoremap Q <Nop>
+
+" always show tab bar
+set showtabline=2
+
+" allow buffers to be in the background
+set hidden
+
+" crontab options
+if $VIM_CRONTAB == "true"
+    set nobackup
+    set nowritebackup
+endif
