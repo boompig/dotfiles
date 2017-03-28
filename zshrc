@@ -77,7 +77,7 @@ else
 fi
 alias ll='ls -l'
 alias grep='grep --color=auto'
-
+#alias vim="$(which nvim)"
 alias ipy='ipython'
 
 vims () {

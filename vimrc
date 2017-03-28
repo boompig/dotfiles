@@ -71,8 +71,11 @@ Plug 'kien/ctrlp.vim'
 " autocomplete
 if has('nvim')
     Plug 'Shougo/deoplete.nvim'
+    let g:deoplete#enable_at_startup = 1
 else
     Plug 'Shougo/neocomplete.vim'
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplete#enable_at_startup = 1
 endif
 " this plugin only exists to show current branch info in statusline. disabled
 " because slow to start up
@@ -104,10 +107,10 @@ if has("gui_running")
     set background=light
     let g:solarized_termcolors=256
 else
-    let g:molotov = 1
+    "let g:molotov = 1
 
     set background=dark
-    colorscheme molotov
+    colorscheme molokai
 
     " enables solarized theme in terminal
     let g:solarized_termcolors=256
@@ -155,12 +158,6 @@ nmap <D-0> <Plug>BufTabLine.Go(10)
 """"""""""""""""""" remember more """""""""""""""""""""""""""""""
 set history=1000
 set undolevels=1000
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""" Auto-Complete """""""""""""""""""""""""""""""
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplete#enable_at_startup = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" Language-Specific """""""""""""""""""""""""""
