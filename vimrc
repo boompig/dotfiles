@@ -27,11 +27,11 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 " syntax folding for Python
-"Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 " Plug 'lervag/vimtex'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-"Plug 'davidhalter/jedi'
+Plug 'davidhalter/jedi'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 " Scala
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
@@ -47,13 +47,15 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 " screws with indent and doesn't really provide any functionality
 "Plug 'plasticboy/vim-markdown'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
+" AppleScript
+Plug 'vim-scripts/applescript.vim'
 
 " actual plugins
 Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Python tooling
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 " extended % matching to HTML; put this before vim-sensible
 Plug 'tmhedberg/matchit'
 " good vim defaults
@@ -73,9 +75,11 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim'
     let g:deoplete#enable_at_startup = 1
 else
-    Plug 'Shougo/neocomplete.vim'
-    let g:neocomplcache_enable_at_startup = 1
-    let g:neocomplete#enable_at_startup = 1
+    if has('lua')
+        Plug 'Shougo/neocomplete.vim'
+        let g:neocomplcache_enable_at_startup = 1
+        let g:neocomplete#enable_at_startup = 1
+    endif
 endif
 " this plugin only exists to show current branch info in statusline. disabled
 " because slow to start up
@@ -164,12 +168,16 @@ set undolevels=1000
 " add support for go types
 set runtimepath+=$GOROOT/misc/vim
 " all *.md files refer to markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown conceallevel=0 linebreak spell
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 let g:markdown_syntax_conceal = 0
 " allow .js files to have React-style highlighting
 let g:jsx_ext_required = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""" Python options """""""""""""""""""""""""""""""
+autocmd FileType python setlocal foldenable foldlevel=20
+"""""""""""""""""" Python options """""""""""""""""""""""""""""""
 
 filetype plugin indent on
 syntax on
@@ -368,9 +376,9 @@ nmap <F5> :Make<CR>
 
 """""""""""""""""" NERDTree config """""""""""""""""""
 " NERDTree will cd when you cd
-let NERDTreeChDirMode=2
+"let NERDTreeChDirMode=2
 let NERDTreeIgnore = ['\.pyc$']
-set autochdir
+"set autochdir
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
@@ -399,3 +407,9 @@ if $VIM_CRONTAB == "true"
     set nobackup
     set nowritebackup
 endif
+
+"""""""""" simpylfold options """"""""""""""""""
+let g:SimpylFold_fold_import = 0
+let g:SimpylFold_docstring_preview = 0
+set foldmethod=syntax
+""""""""""""""""""""""""""""""""""""""""""""""""
