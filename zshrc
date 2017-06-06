@@ -119,7 +119,7 @@ fi
 
 psql_app_path='/Applications/Postgres.app'
 if [ -d "$psql_app_path" ]; then
-    psql_bin_path=$(find "$psql_app_path/Contents/Versions" -name 'bin')
+    psql_bin_path="$psql_app_path/Contents/Versions/latest/bin"
     PATH="$PATH:$psql_bin_path"
 fi
 

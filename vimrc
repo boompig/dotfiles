@@ -49,8 +49,18 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 " AppleScript
 Plug 'vim-scripts/applescript.vim'
+" Markdown live preview
+"Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+"TODO put this in a better place
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_allow_external_content = 0
+"TODO this is probably not the best thing...
+"set shell=/bin/bash
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 
 " actual plugins
+"Plug 'w0rp/ale'
+Plug 'vim-syntastic/syntastic'
 Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -95,7 +105,7 @@ Plug 'vim-scripts/closetag.vim'
 " faster folding
 Plug 'Konfekt/FastFold'
 " import sorting for Python
-"Plug 'fisadev/vim-isort'
+Plug 'fisadev/vim-isort'
 " allows for async make
 Plug 'tpope/vim-dispatch'
 
@@ -104,7 +114,7 @@ call plug#end()
 
 if has("gui_running")
     " set GUI options
-    set guifont=Monaco:h13
+    set guifont=Source_Code_Pro:h14'
     " hide toolbar in gVim
     set guioptions-=T
     colorscheme solarized
@@ -144,19 +154,21 @@ let g:lightline = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" buftabline config """""""""""""""""""""""""""
-" show vim-internal buffer number for faster buffer switching
-let g:buftabline_numbers = 1
-" allow Mac to switch between buffers using command + #
-nmap <D-1> <Plug>BufTabLine.Go(1)
-nmap <D-2> <Plug>BufTabLine.Go(2)
-nmap <D-3> <Plug>BufTabLine.Go(3)
-nmap <D-4> <Plug>BufTabLine.Go(4)
-nmap <D-5> <Plug>BufTabLine.Go(5)
-nmap <D-6> <Plug>BufTabLine.Go(6)
-nmap <D-7> <Plug>BufTabLine.Go(7)
-nmap <D-8> <Plug>BufTabLine.Go(8)
-nmap <D-9> <Plug>BufTabLine.Go(9)
-nmap <D-0> <Plug>BufTabLine.Go(10)
+if exists("g:buftabline_show")
+    " show vim-internal buffer number for faster buffer switching
+    let g:buftabline_numbers = 1
+    " allow Mac to switch between buffers using command + #
+    nmap <D-1> <Plug>BufTabLine.Go(1)
+    nmap <D-2> <Plug>BufTabLine.Go(2)
+    nmap <D-3> <Plug>BufTabLine.Go(3)
+    nmap <D-4> <Plug>BufTabLine.Go(4)
+    nmap <D-5> <Plug>BufTabLine.Go(5)
+    nmap <D-6> <Plug>BufTabLine.Go(6)
+    nmap <D-7> <Plug>BufTabLine.Go(7)
+    nmap <D-8> <Plug>BufTabLine.Go(8)
+    nmap <D-9> <Plug>BufTabLine.Go(9)
+    nmap <D-0> <Plug>BufTabLine.Go(10)
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""" remember more """""""""""""""""""""""""""""""
@@ -390,7 +402,7 @@ set showtabline=2
 
 " allow buffers to be in the background
 set hidden
-set cursorline
+"set cursorline
 
 """"""""""""" Ctrl-p options """"""""""""""""""""
 let g:ctrlp_custom_ignore = {
@@ -412,4 +424,19 @@ endif
 let g:SimpylFold_fold_import = 0
 let g:SimpylFold_docstring_preview = 0
 set foldmethod=syntax
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+set mouse=
+set wildignore+=*.pyc
+set wildignore+=*.zip
+set wildignore+=*.avro
+
+"""""""""" ale linter """"""""""""""""""""""""""
+"au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+"let g:ale_linters = {'jsx': ['eslint']}
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""" syntastic linter """"""""""""""""""""
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
 """"""""""""""""""""""""""""""""""""""""""""""""
