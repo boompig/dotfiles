@@ -23,7 +23,7 @@ Plug 'mustache/vim-mustache-handlebars'
 "Plug 'fatih/vim-go'
 "Plug 'petRUShka/vim-opencl'
 " disabled because it stops highlighting print functions
-"Plug 'hdima/python-syntax'
+"Plug 'hdima/python-syntax', { 'for': 'python' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx'
 " syntax folding for Python
@@ -31,7 +31,6 @@ Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 " Plug 'lervag/vimtex'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Python docs in vim
-Plug 'davidhalter/jedi'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 " Scala
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
@@ -57,6 +56,7 @@ Plug 'vim-scripts/applescript.vim'
 "TODO this is probably not the best thing...
 "set shell=/bin/bash
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'cespare/vim-toml'
 
 " actual plugins
 "Plug 'w0rp/ale'
@@ -65,7 +65,7 @@ Plug 'rking/ag.vim'
 " this plugin auto-generates boilerplate HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Python tooling
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " extended % matching to HTML; put this before vim-sensible
 Plug 'tmhedberg/matchit'
 " good vim defaults
@@ -80,6 +80,8 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " better file finder
 Plug 'kien/ctrlp.vim'
+" better buffer management
+"Plug 'jeetsukumaran/vim-buffergator'
 " autocomplete
 if has('nvim')
     Plug 'Shougo/deoplete.nvim'
@@ -97,7 +99,7 @@ endif
 " this is the statusline plugin
 Plug 'itchyny/lightline.vim'
 " display buffers as tabs
-Plug 'ap/vim-buftabline'
+"Plug 'ap/vim-buftabline'
 " shortcuts for fast switching between buffers
 Plug 'tpope/vim-unimpaired'
 " autoclose HTML
@@ -114,11 +116,12 @@ call plug#end()
 
 if has("gui_running")
     " set GUI options
-    set guifont=Source_Code_Pro:h14'
+    set guifont=Source_Code_Pro:h15
     " hide toolbar in gVim
     set guioptions-=T
-    colorscheme solarized
-    set background=light
+    "colorscheme solarized
+    colorscheme molotov
+    "set background=light
     let g:solarized_termcolors=256
 else
     "let g:molotov = 1
@@ -383,14 +386,17 @@ map <leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '>
 """"""""""""""""""""" F-key mappings """""""""""""""""
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NERDTreeToggle<CR>
+"nmap <F7> :Vexplore<CR>
 nmap <F5> :Make<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" NERDTree config """""""""""""""""""
-" NERDTree will cd when you cd
-"let NERDTreeChDirMode=2
-let NERDTreeIgnore = ['\.pyc$']
-"set autochdir
+if has('NERDTree')
+    " NERDTree will cd when you cd
+    "let NERDTreeChDirMode=2
+    let NERDTreeIgnore = ['\.pyc$']
+    "set autochdir
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""" Pretty tab-bar """"""""""""""""""""
@@ -408,6 +414,13 @@ set hidden
 let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(pyc|class)'
             \}
+" persist the ctrlp cache
+let g:ctrlp_use_caching = 1
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" use ag if available
+"if executable('ag')
+    "let g:ctrl_user_command = 'ag %s -l --nocolor -g ""'
+"endif
 """"""""""""" Ctrl-p options """"""""""""""""""""
 
 """"""""""""" vim-json options """"""""""""""""""
@@ -430,6 +443,8 @@ set mouse=
 set wildignore+=*.pyc
 set wildignore+=*.zip
 set wildignore+=*.avro
+set wildignore+=*.npz
+set wildignore+=tags
 
 """""""""" ale linter """"""""""""""""""""""""""
 "au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
@@ -438,5 +453,14 @@ set wildignore+=*.avro
 
 """""""""" syntastic linter """"""""""""""""""""
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_python_checkers = ['pyflakes']
 """"""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""" netrw """"""""""""""""""""""
+" this is the neovim file navigation vewer
+if has('nvim')
+    let g:netrw_banner = 0
+endif
+""""""""""""""""""" netrw """"""""""""""""""""""
+

@@ -194,6 +194,27 @@ if [ -d "$stockfish_path" ] && ! command_exists stockfish; then
     export PATH="$PATH:$stockfish_path"
 fi
 
+if command_exists yarn; then
+    export PATH="$PATH:$(yarn global bin)"
+fi
+
+export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+
 # set vim as the editor
 export VISUAL="$VIM_PATH"
 export EDITOR="$VIM_PATH"
+alias crontab="VIM_CRONTAB=true crontab"
+
+which go >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+fi
+
+which terraform >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+    alias tf=terraform
+fi
+
+# add rust
+export PATH="$HOME/.cargo/bin:$PATH"
