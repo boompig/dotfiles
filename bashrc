@@ -125,4 +125,3 @@ append_to_path_if_exists "$HOME/node_modules/jshint/bin"
 
 # postgres on Mac
 append_to_path_if_exists "/Applications/Postgres.app/Contents//Versions/9.3/bin"
-
