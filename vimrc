@@ -127,6 +127,7 @@ else
     "let g:molotov = 1
 
     set background=dark
+    "colorscheme molotov
     colorscheme molokai
 
     " enables solarized theme in terminal
