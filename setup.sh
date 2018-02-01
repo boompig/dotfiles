@@ -221,6 +221,12 @@ install_vim_colorscheme \
     "https://github.com/altercation/vim-colors-solarized.git" \
     "colors/solarized.vim";
 
+install_vim_colorscheme \
+	"Afterglow" \
+	"vim-afterglow" \
+	"https://github.com/danilo-augusto/vim-afterglow" \
+	"colors/afterglow.vim"
+
 install_vimrc
 install_my_vim_colorscheme
 install_vim_plugins
