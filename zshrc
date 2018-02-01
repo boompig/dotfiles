@@ -163,7 +163,7 @@ fi
 set -o emacs
 alias py='python'
 
-export TERM='xterm-256color'
+export TERM='screen-256color'
 
 #if [[ "$TERM" != screen* ]]
 #then
