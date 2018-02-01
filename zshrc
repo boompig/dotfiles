@@ -77,7 +77,7 @@ else
 fi
 alias ll='ls -l'
 alias grep='grep --color=auto'
-
+#alias vim="$(which nvim)"
 alias ipy='ipython'
 
 vims () {
@@ -119,7 +119,7 @@ fi
 
 psql_app_path='/Applications/Postgres.app'
 if [ -d "$psql_app_path" ]; then
-    psql_bin_path=$(find "$psql_app_path/Contents/Versions" -name 'bin')
+    psql_bin_path="$psql_app_path/Contents/Versions/latest/bin"
     PATH="$PATH:$psql_bin_path"
 fi
 
@@ -194,6 +194,27 @@ if [ -d "$stockfish_path" ] && ! command_exists stockfish; then
     export PATH="$PATH:$stockfish_path"
 fi
 
+if command_exists yarn; then
+    export PATH="$PATH:$(yarn global bin)"
+fi
+
+export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+
 # set vim as the editor
 export VISUAL="$VIM_PATH"
 export EDITOR="$VIM_PATH"
+alias crontab="VIM_CRONTAB=true crontab"
+
+which go >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+fi
+
+which terraform >/dev/null 2>/dev/null
+if [ $? -eq 0 ]; then
+    alias tf=terraform
+fi
+
+# add rust
+export PATH="$HOME/.cargo/bin:$PATH"
