@@ -127,8 +127,8 @@ else
     "let g:molotov = 1
 
     set background=dark
-    "colorscheme molotov
-    colorscheme molokai
+    "colorscheme molokai
+	colorscheme afterglow
 
     " enables solarized theme in terminal
     let g:solarized_termcolors=256
@@ -228,7 +228,7 @@ set number
 " tabs are 4 spaces
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 set shiftround
 set softtabstop=4
 " show matching parens
