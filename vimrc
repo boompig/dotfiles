@@ -413,7 +413,8 @@ set hidden
 
 """"""""""""" Ctrl-p options """"""""""""""""""""
 let g:ctrlp_custom_ignore = {
-            \ 'file': '\v\.(pyc|class)'
+	\ 'dir':  '\.git$|node_modules$',
+	\ 'file': '\v\.(pyc|class)'
             \}
 " persist the ctrlp cache
 let g:ctrlp_use_caching = 1
