@@ -57,6 +57,9 @@ Plug 'vim-scripts/applescript.vim'
 "set shell=/bin/bash
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'cespare/vim-toml'
+Plug 'peitalin/vim-jsx-typescript'
+" for flow
+"Plug 'flowtype/vim-flow'
 
 " actual plugins
 "Plug 'w0rp/ale'
@@ -91,6 +94,8 @@ else
         Plug 'Shougo/neocomplete.vim'
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplete#enable_at_startup = 1
+	else
+		"Plug 'Valloric/YouCompleteMe'
     endif
 endif
 " this plugin only exists to show current branch info in statusline. disabled
@@ -110,6 +115,8 @@ Plug 'Konfekt/FastFold'
 Plug 'fisadev/vim-isort'
 " allows for async make
 Plug 'tpope/vim-dispatch'
+" automatically jsdoc for javascript
+Plug 'heavenshell/vim-jsdoc'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -241,7 +248,7 @@ set showmatch
 
 set hlsearch
 set incsearch
-set ignorecase
+"set ignorecase
 set smartcase
 
 set cindent
@@ -413,7 +420,8 @@ set hidden
 
 """"""""""""" Ctrl-p options """"""""""""""""""""
 let g:ctrlp_custom_ignore = {
-            \ 'file': '\v\.(pyc|class)'
+            \ 'file': '\v\.(pyc|class|pem|lock)',
+			\ 'dir': '\.git$\|node_modules$\|venv$\|venv3$'
             \}
 " persist the ctrlp cache
 let g:ctrlp_use_caching = 1
@@ -454,9 +462,15 @@ set wildignore+=tags
 
 """""""""" syntastic linter """"""""""""""""""""
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_javascript_checkers = []
 let g:syntastic_python_checkers = ['pyflakes']
+"let g:syntastic_typescript_checkers = ['tslint']
 """"""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""" vim-flow """""""""""""""""""
+" do not show quickfix menu when there are no errors
+let g:flow#autoclose = 1
+""""""""""""""""""" netrw """"""""""""""""""""""
 
 """"""""""""""""""" netrw """"""""""""""""""""""
 " this is the neovim file navigation vewer
@@ -465,3 +479,6 @@ if has('nvim')
 endif
 """"""""""""""""""" netrw """"""""""""""""""""""
 
+" allow for project-specific vim files
+set exrc
+set secure
