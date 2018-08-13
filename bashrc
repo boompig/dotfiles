@@ -103,7 +103,7 @@ function append_to_path_if_exists {
 prepend_to_path "/usr/local/bin"
 
 # set the terminal to be 256-color compatible
-export TERM="xterm-256color"
+export TERM="screen-256color"
 
 configure_git
 

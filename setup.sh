@@ -193,6 +193,8 @@ install_mac_homebrew_packages() {
     fi
 }
 
+# --------- start doing things here -------------
+
 git_or_exit
 vim_or_exit
 configure_git
