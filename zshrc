@@ -1,4 +1,21 @@
-autoload -U compinit promptinit colors
+autoload -Uz compinit promptinit colors
+# loads from compinit file less frequently
+# see this blog post: https://carlosbecker.com/posts/speeding-up-zsh/
+# and this gist: https://gist.github.com/ctechols/ca1035271ad134841284
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+	compinit
+else
+	compinit -C
+fi
+
+# TODO for startup time profiling
+#zmodload zsh/zprof
+
+# display colors when autocompleting commands
+export LSCOLORS=ExFxCxDxBxegedabagacad
+export LS_COLORS=ExFxCxDxBxegedabagacad
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+
 compinit
 colors
 
@@ -218,3 +235,18 @@ fi
 
 # add rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# add java home
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export PATH=${JAVA_HOME}/bin:$PATH
+
+# add nvm
+export NVM_DIR="$HOME/.nvm"
+# ----- do not load NVM because it is slow as hell
+# This loads nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+# This loads nvm bash_completion
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+
+# TODO for startup time profiling
+#zprof
