@@ -102,6 +102,13 @@ install_tmux_conf() {
         echo "Installing tmux.conf..."
         ln -s "$HERE/tmux.conf" "$tmux_conf"
     fi
+	if [ ! -d "$HOME/.tmux/plugs" ]
+	then
+		echo "Warning: tpm is already installed">&2
+	else
+		echo "Installing tpm..."
+		git clone 'https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
+	fi
 }
 
 create_vim_colorscheme_dir() {
