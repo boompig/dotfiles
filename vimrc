@@ -60,6 +60,7 @@ Plug 'cespare/vim-toml'
 Plug 'peitalin/vim-jsx-typescript'
 " for flow
 "Plug 'flowtype/vim-flow'
+Plug 'chr4/nginx.vim'
 
 " actual plugins
 "Plug 'w0rp/ale'
@@ -112,7 +113,7 @@ Plug 'vim-scripts/closetag.vim'
 " faster folding
 Plug 'Konfekt/FastFold'
 " import sorting for Python
-Plug 'fisadev/vim-isort'
+"Plug 'fisadev/vim-isort'
 " allows for async make
 Plug 'tpope/vim-dispatch'
 " automatically jsdoc for javascript
