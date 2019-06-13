@@ -1,12 +1,4 @@
 autoload -Uz compinit promptinit colors
-# loads from compinit file less frequently
-# see this blog post: https://carlosbecker.com/posts/speeding-up-zsh/
-# and this gist: https://gist.github.com/ctechols/ca1035271ad134841284
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-	compinit
-else
-	compinit -C
-fi
 
 # TODO for startup time profiling
 #zmodload zsh/zprof
@@ -16,7 +8,12 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 export LS_COLORS=ExFxCxDxBxegedabagacad
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
-compinit
+# note that compinit is pretty slow so best to only do it once per day
+for dump in ~/.zcompdump(N.mh+24); do
+	compinit
+done
+compinit -C
+
 colors
 
 # enable prompt substitution for git branch in prompt
@@ -199,7 +196,9 @@ function git_config {
 	git config --global core.editor "$VIM_PATH"
 }
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+if [ -d "$HOME/.rvm" ]; then
+	export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+fi
 
 bindkey -e
 bindkey '^[[1;5C' forward-word
@@ -215,7 +214,9 @@ if command_exists yarn; then
     export PATH="$PATH:$(yarn global bin)"
 fi
 
-export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+if [ -d "$HOME/Library/Python2.7" ]; then
+	export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+fi
 
 # set vim as the editor
 export VISUAL="$VIM_PATH"
@@ -234,14 +235,24 @@ if [ $? -eq 0 ]; then
 fi
 
 # add rust
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -d "$HOME/.cargo" ]; then
+	export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # add java home
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export PATH=${JAVA_HOME}/bin:$PATH
+JAVA_HOME_DIR='/usr/libexec/java_home'
+if [ -f "$JAVA_HOME_DIR" ]; then
+	export JAVA_HOME="$($JAVA_HOME_DIR -v 1.8 2>/dev/null)"
+	if [ $? -eq 0 ]; then
+		export PATH=${JAVA_HOME}/bin:$PATH
+	fi
+fi
 
 # add nvm
-export NVM_DIR="$HOME/.nvm"
+if [ -f "$HOME/.nvm" ]; then
+	export NVM_DIR="$HOME/.nvm"
+fi
+
 # ----- do not load NVM because it is slow as hell
 # This loads nvm
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
