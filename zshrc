@@ -198,12 +198,22 @@ if command_exists yarn; then
 	append_to_path_if_exists "$(yarn global bin)"
 fi
 
+# old python
 append_to_path_if_exists "$HOME/Library/Python2.7/bin"
+# Anaconda python
+append_to_path_if_exists "$HOME/anaconda3/bin"
+# chess
 append_to_path_if_exists "/usr/local/stockfish/bin"
+# ruby
 append_to_path_if_exists "$HOME/.rvm/bin"
+# CMake
 append_to_path_if_exists "/Applications/CMake.app/Contents/bin"
+# heroku
 append_to_path_if_exists "/usr/local/heroku/bin"
+# psql
 append_to_path_if_exists "/Applications/Postgres.app/Contents/Versions/latest/bin"
+# rust
+append_to_path_if_exists "$HOME/.cargo/bin"
 
 # set vim as the editor
 export VISUAL="$VIM_PATH"
@@ -222,8 +232,6 @@ if [ $? -eq 0 ]; then
     alias tf=terraform
 fi
 
-# add rust
-append_to_path_if_exists "$HOME/.cargo/bin"
 
 # add java home
 JAVA_HOME_DIR='/usr/libexec/java_home'
