@@ -131,20 +131,9 @@ if [ -x "$SUBLIME_PATH" ]; then
     alias sublime="$SUBLIME_PATH"
 fi
 
-psql_app_path='/Applications/Postgres.app'
-if [ -d "$psql_app_path" ]; then
-    psql_bin_path="$psql_app_path/Contents/Versions/latest/bin"
-    PATH="$PATH:$psql_bin_path"
-fi
-
 ZSH_COLOR_PLUGIN="$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 if [ -f "$ZSH_COLOR_PLUGIN" ]; then
     source "$ZSH_COLOR_PLUGIN"
-fi
-
-### Added by the Heroku Toolbelt
-if [ -d "/usr/local/heroku/bin" ]; then
-    export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
 is_mac=$(uname -a | grep -q Darwin && echo 1 || echo 0)
@@ -165,11 +154,6 @@ if [ "$is_mac" -eq 1 ] && [ -e "/usr/local/bin/gcc-4.9" ]; then
     alias gcc='/usr/local/bin/gcc-4.9'
 fi
 
-MAC_CMAKE_PATH="/Applications/CMake.app/Contents/bin"
-if [ -d "$MAC_CMAKE_PATH" ]
-then
-    export PATH="$PATH:$MAC_CMAKE_PATH"
-fi
 
 #############################################################################
 
@@ -197,7 +181,6 @@ function git_config {
 }
 
 if [ -d "$HOME/.rvm" ]; then
-	export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 fi
 
 bindkey -e
@@ -205,23 +188,28 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey "^[[3~" delete-char
 
-stockfish_path="/usr/local/stockfish/bin"
-if [ -d "$stockfish_path" ] && ! command_exists stockfish; then
-    export PATH="$PATH:$stockfish_path"
-fi
+function append_to_path_if_exists {
+	if [ -d "$1" ]; then
+		export PATH="$PATH:$1"
+	fi
+}
 
 if command_exists yarn; then
-    export PATH="$PATH:$(yarn global bin)"
+	append_to_path_if_exists "$(yarn global bin)"
 fi
 
-if [ -d "$HOME/Library/Python2.7" ]; then
-	export PATH="$PATH:$HOME/Library/Python/2.7/bin"
-fi
+append_to_path_if_exists "$HOME/Library/Python2.7/bin"
+append_to_path_if_exists "/usr/local/stockfish/bin"
+append_to_path_if_exists "$HOME/.rvm/bin"
+append_to_path_if_exists "/Applications/CMake.app/Contents/bin"
+append_to_path_if_exists "/usr/local/heroku/bin"
+append_to_path_if_exists "/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 # set vim as the editor
 export VISUAL="$VIM_PATH"
 export EDITOR="$VIM_PATH"
 alias crontab="VIM_CRONTAB=true crontab"
+
 
 which go >/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
@@ -235,9 +223,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # add rust
-if [ -d "$HOME/.cargo" ]; then
-	export PATH="$HOME/.cargo/bin:$PATH"
-fi
+append_to_path_if_exists "$HOME/.cargo/bin"
 
 # add java home
 JAVA_HOME_DIR='/usr/libexec/java_home'

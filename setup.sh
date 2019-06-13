@@ -168,6 +168,25 @@ install_vim_plugins() {
     vim +PlugInstall +qa
 }
 
+copy_vim_config_to_neovim() {
+	if command_exists nvim; then
+		neovim_dir="$HOME/.config/nvim"
+		mkdir -p "$neovim_dir"
+		if [ ! -d "$neovim_dir/colors" ]; then
+			ln -s "$HOME/.vim/colors" "$neovim_dir/colors"
+		fi
+		plugin_dir="$HOME/.local/share/nvim/site/autoload"
+		if [ ! -d "$plugin_dir" ]; then
+			ln -s "$HOME/.vim/autoload" "$plugin_dir"
+		fi
+		if [ ! -f "$neovim_dir/init.vim" ]; then
+			ln -s "$HOME/.vimrc" "$neovim_dir/init.vim"
+		fi
+	else
+		echo 'Warning: neovim is not installed'>&2
+	fi
+}
+
 download_fonts() {
     local local_dir="$HERE/source-code-pro"
     local git_url="https://github.com/adobe-fonts/source-code-pro.git"
@@ -241,5 +260,6 @@ install_my_vim_colorscheme
 install_vim_plugins
 download_fonts
 configure_vim_fonts
+copy_vim_config_to_neovim
 
 install_mac_homebrew_packages
