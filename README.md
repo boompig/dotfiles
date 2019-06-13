@@ -17,7 +17,7 @@ All dependencies are auto-installed. Optionally, you can also run `./soft-setup.
 
 ## Install iTerm Profile
 
-You can install iTerm color schemes from [this page][2].
+You can install iTerm color schemes from [this page][2]. Some of my favorites can be found in the `iterm` directory.
 
 ## Install Fonts
 
