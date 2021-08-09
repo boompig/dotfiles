@@ -99,6 +99,12 @@ function append_to_path_if_exists {
     fi
 }
 
+realpath() {
+	[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+type -a realpath >/dev/null || export realpath
+
 # make sure to read /usr/local/bin before anything else in PATH (for Homebrew on Mac)
 prepend_to_path "/usr/local/bin"
 

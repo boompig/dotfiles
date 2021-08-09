@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 autoload -Uz compinit promptinit colors
 
 # TODO for startup time profiling
@@ -184,9 +185,8 @@ if [ -d "$HOME/.rvm" ]; then
 fi
 
 bindkey -e
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
-bindkey "^[[3~" delete-char
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
 
 function append_to_path_if_exists {
 	if [ -d "$1" ]; then
@@ -194,14 +194,20 @@ function append_to_path_if_exists {
 	fi
 }
 
+function realpath {
+	[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+type -a realpath >/dev/null || export realpath
+
 if command_exists yarn; then
 	append_to_path_if_exists "$(yarn global bin)"
 fi
 
+# custom binary folder
+append_to_path_if_exists "$HOME/bin"
 # old python
 append_to_path_if_exists "$HOME/Library/Python2.7/bin"
-# Anaconda python
-append_to_path_if_exists "$HOME/anaconda3/bin"
 # chess
 append_to_path_if_exists "/usr/local/stockfish/bin"
 # ruby
@@ -214,6 +220,10 @@ append_to_path_if_exists "/usr/local/heroku/bin"
 append_to_path_if_exists "/Applications/Postgres.app/Contents/Versions/latest/bin"
 # rust
 append_to_path_if_exists "$HOME/.cargo/bin"
+# go
+append_to_path_if_exists "/usr/local/go/bin"
+# home bin
+append_to_path_if_exists "$HOME/bin"
 
 # set vim as the editor
 export VISUAL="$VIM_PATH"
@@ -254,4 +264,30 @@ fi
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
 # TODO for startup time profiling
+#zprof
+
+alias alice='cowsay `fortune -o limerick`'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/Daniel_Kats/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/Daniel_Kats/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/Daniel_Kats/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/Daniel_Kats/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
 #zprof
