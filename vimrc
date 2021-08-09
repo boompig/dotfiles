@@ -121,6 +121,11 @@ Plug 'heavenshell/vim-jsdoc'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+filetype plugin indent on
+" NOTE: syntax on should go *before* colorschemes for faster loading time
+syntax on
+set t_Co=256
 
 if has("gui_running")
     " set GUI options
@@ -203,9 +208,6 @@ let g:jsx_ext_required = 1
 autocmd FileType python setlocal foldenable foldlevel=20
 """""""""""""""""" Python options """""""""""""""""""""""""""""""
 
-filetype plugin indent on
-syntax on
-set t_Co=256
 
 """""""""""""""""""""" syntax inspector """""""""""""""""""""""""""""""
 "nmap <C-S-P> :call <SID>SynStack()<CR>
