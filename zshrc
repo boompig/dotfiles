@@ -1,7 +1,7 @@
 #zmodload zsh/zprof
 autoload -Uz compinit promptinit colors
 
-# TODO for startup time profiling
+# NOTE: uncomment for startup time profiling (together with zprof at bottom)
 #zmodload zsh/zprof
 
 # display colors when autocompleting commands
@@ -10,6 +10,7 @@ export LS_COLORS=ExFxCxDxBxegedabagacad
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 # note that compinit is pretty slow so best to only do it once per day
+# see https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
 for dump in ~/.zcompdump(N.mh+24); do
 	compinit
 done
@@ -140,9 +141,9 @@ fi
 is_mac=$(uname -a | grep -q Darwin && echo 1 || echo 0)
 
 # Mac only: homebrew settings
-if [ "$is_mac" -eq 1 ] && [ -d "/usr/local/bin" ]; then
+if [ "$is_mac" -eq 1 ] && [ -d "/opt/homebrew" ]; then
 	# make sure we are using homebrew version of executables
-    export PATH="/usr/local/bin:$PATH"
+    export PATH="/opt/homebrew/bin:$PATH"
 	export HOMEBREW_NO_ANALYTICS=1
 fi
 
@@ -270,14 +271,14 @@ alias alice='cowsay `fortune -o limerick`'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/Daniel_Kats/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/gru/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/Daniel_Kats/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/Daniel_Kats/opt/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/gru/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/gru/opt/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/Daniel_Kats/opt/anaconda3/bin:$PATH"
+        export PATH="/Users/gru/opt/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -290,4 +291,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #export PYENV_ROOT="$HOME/.pyenv"
 #export PATH="$PYENV_ROOT/bin:$PATH"
 #echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+
+# NOTE: uncomment for startup time profiling (together with zprof at top)
 #zprof
