@@ -34,7 +34,7 @@ vim_or_exit() {
 
 configure_git() {
     git config --global user.name "Daniel Kats"
-    git config --global user.email "boompigdev@gmail.com"
+    git config --global user.email "dbkats@gmail.com"
     git config --global core.editor "$(which vim)"
     local git_version="$(git --version | sed 's/git version //')"
     if echo "$git_version" | egrep -q '^2'; then

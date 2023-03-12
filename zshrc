@@ -185,6 +185,8 @@ function git_config {
 if [ -d "$HOME/.rvm" ]; then
 fi
 
+# use alt + <- and alt + -> to go back/forward words
+# see https://superuser.com/a/357394
 bindkey -e
 bindkey '^[[1;9C' forward-word
 bindkey '^[[1;9D' backward-word
@@ -284,13 +286,15 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+# turn off AWS data collection
+export SAM_CLI_TELEMETRY=0
 
 # NOTE: uncomment for startup time profiling (together with zprof at top)
 #zprof
